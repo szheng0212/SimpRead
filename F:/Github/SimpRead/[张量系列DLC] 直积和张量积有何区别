@@ -1,0 +1,273 @@
+> 本文由 [简悦 SimpRead](http://ksria.com/simpread/) 转码， 原文地址 [zhuanlan.zhihu.com](https://zhuanlan.zhihu.com/p/340956105)
+
+> 本文部分概念为个人理解, 暂未寻求文献支持. 所以避开了一些通用名词吧, 免得与市面上的说法不一致造成误导. 我们能任意比对不同的张量运算得益于 Masaki Notation 能有效地解构任意张量运算. 以本文为例, 理论上…
+
+**本文部分概念为个人理解, 暂未寻求文献支持.**
+
+> 所以避开了一些通用名词吧, 免得与市面上的说法不一致造成误导.
+
+我们能任意比对不同的张量运算得益于 [Masaki Notation](https://zhuanlan.zhihu.com/p/311558501) 能有效地解构任意张量运算.
+
+> 以本文为例, 理论上任意定义的张量积都可以用指标符号拆解成分量表示:  
+> ┣ 例如定义运算 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29%3D%5Cleft%28+AC+%5Cright%29%5Cotimes+%5Cleft%28+BD+%5Cright%29%5C%5D),  
+> ┗ 则可等价地表示为 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29%5Cto+%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7BB%7D%5E%7B%5Crho+%7D%7D_%7B%5Csigma+%7D%7B%7BC%7D%5E%7B%5Cnu+%7D%7D_%7B%5Ctau+%7D%7B%7BD%7D%5E%7B%5Csigma+%7D%7D_%7B%5Ceta+%7D%5C%5D).
+
+目録
+--
+
+**1. 直积与张量积的定义**
+
+> 1.1. 直积和张量积不是一回事  
+> 1.2. 张量积用来构造高阶张量  
+> 1.3. 喀兴林先生的书上定义的矩阵张量积  
+> 1.4. 二者有时候只相差一个很微妙的小细节
+
+**2. 降维张量积** [[1]](#ref_1) **与老百姓张量积**
+
+> 2.1. 降维张量积的定义  
+> 2.2. 用 Masaki Notation 来计算降维张量积  
+> 2.3. 降维张量积的具体计算实例  
+> 2.4. 降维张量积和老百姓张量积可以是一回事
+
+**[附录 A] 张量的初级理解**
+
+1. 直积与张量积的定义
+------------
+
+这里讲的十分简略, 因为这不是本文的重点, 若想比较系统的了解张量积请参考 [[前置内容]](https://zhuanlan.zhihu.com/p/356975719).
+
+**1.1. 直积和张量积不是一回事, 直积生成有序元素组:** ![](https://www.zhihu.com/equation?tex=%5C%5BX%5Ctimes+Y%5Cequiv+%5Cleft%5C%7B+%5Cleft%28+x%2Cy+%5Cright%29%7Cx%5Cin+X%2Cy%5Cin+Y+%5Cright%5C%7D%5C%5D).
+
+> 这个也叫 Cartesian product, 说白了就是打包处理, 并没有给予任何额外的操作.  
+> ┣ 举个例子就是对 ![](https://www.zhihu.com/equation?tex=%5C%5BX%3D%5Cleft%5C%7B+%7B%7Bx%7D_%7B1%7D%7D%2C%7B%7Bx%7D_%7B2%7D%7D+%5Cright%5C%7D%2CY%3D%5Cleft%5C%7B+%7B%7By%7D_%7B1%7D%7D%2C%7B%7By%7D_%7B2%7D%7D+%5Cright%5C%7D%5C%5D)  
+> ┗ 有![](https://www.zhihu.com/equation?tex=%5C%5BX%5Ctimes+Y%3D%5Cleft%5C%7B+%5Cleft%28+%7B%7Bx%7D_%7B1%7D%7D%2C%7B%7By%7D_%7B1%7D%7D+%5Cright%29%2C%5Cleft%28+%7B%7Bx%7D_%7B1%7D%7D%2C%7B%7By%7D_%7B2%7D%7D+%5Cright%29%2C%5Cleft%28+%7B%7Bx%7D_%7B2%7D%7D%2C%7B%7By%7D_%7B1%7D%7D+%5Cright%29%2C%5Cleft%28+%7B%7Bx%7D_%7B2%7D%7D%2C%7B%7By%7D_%7B2%7D%7D+%5Cright%29+%5Cright%5C%7D%5C%5D).
+
+**1.2. 张量积用来构造高阶张量:** ![](https://www.zhihu.com/equation?tex=%5C%5Bv%5Cotimes+u%5Cotimes+M%5Cto+%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D%7B%7BM%7D%5E%7B%5Crho+%7D%7D_%7B%5Csigma+%7D%3D%7B%7BT%7D%5E%7B%5Cmu+%5Cnu+%5Crho+%7D%7D_%7B%5Csigma+%7D%5C%5D).
+
+> 上面采用了 [Masaki Notation](https://zhuanlan.zhihu.com/p/311558501), 不懂什么是张量可参见 [附录 A].
+
+**1.3. 在喀兴林先生的书上 (他管这个叫直积, 这是不好的) 定义矩阵的张量积为**:
+
+我就简单概括一下要点, 该做法当然至少可以安全地推广到任意有限维:
+
+> 其实这个叫克罗内克积, 是张量积的一种特殊形式.  
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft.+%5Cbegin%7Balign%7D+++%26+A%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++a+%26+b++%5C%5C++++c+%26+d++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D+%5C%5C+++%26+B%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++e+%26+f++%5C%5C++++g+%26+h++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D+%5C%5C++%5Cend%7Balign%7D+%5Cright%5C%7D%5CRightarrow+A%5Cotimes+B%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++aB+%26+bB++%5C%5C++++cB+%26+dB++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++ae+%26+af+%26+be+%26+bf++%5C%5C++++ag+%26+ah+%26+bg+%26+bh++%5C%5C++++ce+%26+cf+%26+de+%26+df++%5C%5C++++cg+%26+ch+%26+dg+%26+dh++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D). ![](https://www.zhihu.com/equation?tex=%5C%5BA%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++a++%5C%5C++++b++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%2CB%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++c++%5C%5C++++d++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5CRightarrow+A%5Cotimes+B%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++aB++%5C%5C++++bB++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++ac++%5C%5C++++ad++%5C%5C++++bc++%5C%5C++++bd++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D). ![](https://www.zhihu.com/equation?tex=%5C%5BA%3D%5Cleft%5B+a%2Cb+%5Cright%5D%2CB%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++c++%5C%5C++++d++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5CRightarrow+A%5Cotimes+B%3D%5Cleft%5B+aB%2CbB+%5Cright%5D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++ac+%26+bc++%5C%5C++++ad+%26+bd++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D).  
+> ![](https://www.zhihu.com/equation?tex=%5C%5BA%3D%5Cleft%5B+a%2Cb+%5Cright%5D%2CB%3D%5Cleft%5B+c%2Cd+%5Cright%5D%5CRightarrow+A%5Cotimes+B%3D%5Cleft%5B+aB%2CbB+%5Cright%5D%3D%5Cleft%5B+ac%2Cad%2Cbc%2Cbd+%5Cright%5D%5C%5D).
+
+**1.4. 二者有时候只相差一个很微妙的小细节:**
+
+比如我们现在在矢量空间上凭空定义两个括号 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%5Cleft%5B+%5Ccdot+%2C%5Ccdot++%5Cright%5D%3AV%5Cotimes+V%5Cto+V+%5C%5C+++%26+%5Cleft%5Clangle+%5Ccdot+%2C%5Ccdot++%5Cright%5Crangle+%3AV%5Ctimes+V%5Cto+V+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D)
+
+则 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Ccdot+%2C%5Ccdot++%5Cright%5D%5C%5D) 必须是双线性的运算, 而 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5Clangle+%5Ccdot+%2C%5Ccdot++%5Cright%5Crangle+%5C%5D) 就不一定了.
+
+> 因为上面的意思是对一个俩矢量的张量积进行映射, 张量积是自带线性性的.  
+> ┗ 而下面这个则是对俩矢量构成的有序对进行映射, 这并不附带什么线性要求.
+
+2. 降维张量积
+--------
+
+**2.1. 降维张量积的定义:**
+
+> 那么, 虽然我们已经知道直积与张量积不是一回事了,  
+> ┣ 但老百姓口中的张量积和喀兴林先生书上的直积 (写作直积读作张量积) 是不是一回事呢?  
+> ┣ 答案是: 基本上是一回事, 且下面我们将论证这一点.  
+> ┗ 实际上咯先生书上的叫克罗内克积, 是张量积的一种特殊形式.
+
+俩矩阵张量积完还是矩阵, 这真的是张量积吗?
+
+> 本来俩 (1,1) 型张量进行张量积应该得到 (2,2) 型张量对吧?  
+> ┣ 但是你二维的纸上它写不出四维的玩意儿来, 所以我们把四维的矩阵平铺开摆在二维纸上.  
+> ┗ 就是说如果你想要在不损失信息的情况下降维度, 那么要付出的代价就是升阶数咯.  
+> 实际上对张量维度的限制是不必要的, 张量本质上就是一个数列,  
+> ┣ 我们平时写出一个带有 ![](https://www.zhihu.com/equation?tex=n) 个字母指标的分量其实可以看作是这个 ![](https://www.zhihu.com/equation?tex=n) 维数列的通项.  
+> ┣ 张量作为 ![](https://www.zhihu.com/equation?tex=n) 维数列, 它的分量的具体排列顺序是不重要的, 不同的排列只差一个相似变换.  
+> ┗ 所以别说把一个 (2,2) 型张量写成矩阵, 就算你写成一个列矢量也是没有任何问题的.
+
+为了方便我们看出端倪, 这里采取更容易追踪的写法:
+
+![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft.+%5Cbegin%7Balign%7D+++%26+A%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7BA%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BA%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D+%5C%5C+++%26+B%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7BB%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BB%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BB%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BB%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D+%5C%5C++%5Cend%7Balign%7D+%5Cright%5C%7D%5CRightarrow+C%3DA%5Cotimes+B%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7BA%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B2%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BA%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B2%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C++++%7B%7BA%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B2%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BA%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B2%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D)
+
+让我们看看这个降维系数对应:
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%7B%7BC%7D%5E%7B1%7D%7D_%7B1%7D%3D%7B%7BC%7D%5E%7B11%7D%7D_%7B11%7D+%5C%5C+++%26+%7B%7BC%7D%5E%7B1%7D%7D_%7B2%7D%3D%7B%7BC%7D%5E%7B11%7D%7D_%7B12%7D+%5C%5C+++%26+%7B%7BC%7D%5E%7B1%7D%7D_%7B3%7D%3D%7B%7BC%7D%5E%7B11%7D%7D_%7B21%7D+%5C%5C+++%26+%7B%7BC%7D%5E%7B1%7D%7D_%7B4%7D%3D%7B%7BC%7D%5E%7B11%7D%7D_%7B22%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D) , ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%7B%7BC%7D%5E%7B2%7D%7D_%7B1%7D%3D%7B%7BC%7D%5E%7B12%7D%7D_%7B11%7D+%5C%5C+++%26+%7B%7BC%7D%5E%7B2%7D%7D_%7B2%7D%3D%7B%7BC%7D%5E%7B12%7D%7D_%7B12%7D+%5C%5C+++%26+%7B%7BC%7D%5E%7B2%7D%7D_%7B3%7D%3D%7B%7BC%7D%5E%7B12%7D%7D_%7B21%7D+%5C%5C+++%26+%7B%7BC%7D%5E%7B2%7D%7D_%7B4%7D%3D%7B%7BC%7D%5E%7B12%7D%7D_%7B22%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D), ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ccdots+%5Ccdots+%5C%5D)  
+> ┣ 不难发现这个过程就是用阶进制数做了一个序列替代:  
+> ┗ ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+1%5Cto+11%2C%5C+2%5Cto+12%2C%5C+3%5Cto+21%2C%5C+4%5Cto+22+%5Cright%5C%7D%5C%5D).
+
+你一定发现了一个事实: 这样的降维操作应该不唯一罢.
+
+> 确实, 但我们这里就和国际接轨, 取这样的约定, 事实上不同约定之间只差一个幺正变换.
+
+最后你会在意的就是说, 降维张量积和老百姓张量积是否是一回事.
+
+> 答案是可以是, 我们将在最后阐述这一点.
+
+**2.2. 用 Masaki Notation 来计算降维张量积:**
+
+让我们以二维矩阵为例观察一下这个表达效果:
+
+> 设定 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29%3DEF%5C%5D), 展开写就是:  
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7BA%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B2%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BA%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B2%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C++++%7B%7BA%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B2%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BA%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B2%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BA%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7BC%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BD%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BC%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BD%7D%5E%7B1%7D%7D_%7B2%7D+%26+%7B%7BC%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BC%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BC%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BD%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BC%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BD%7D%5E%7B2%7D%7D_%7B2%7D+%26+%7B%7BC%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BC%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C++++%7B%7BC%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BD%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BC%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BD%7D%5E%7B1%7D%7D_%7B2%7D+%26+%7B%7BC%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BC%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BC%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BD%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BC%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BD%7D%5E%7B2%7D%7D_%7B2%7D+%26+%7B%7BC%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BC%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3DEF%5C%5D)  
+> 我们看看 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+EF+%5Cright%29%7D%5E%7B2%7D%7D_%7B3%7D%5C%5D) 的表达式:  
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+EF+%5Cright%29%7D%5E%7B2%7D%7D_%7B3%7D%3D%7B%7BA%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BC%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B1%7D%7D_%7B1%7D%2B%7B%7BA%7D%5E%7B1%7D%7D_%7B1%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BC%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B2%7D%7D_%7B1%7D%2B%7B%7BA%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B1%7D%7B%7BC%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B1%7D%7D_%7B1%7D%2B%7B%7BA%7D%5E%7B1%7D%7D_%7B2%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BC%7D%5E%7B2%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B2%7D%7D_%7B1%7D%5C%5D)  
+> 总结一下就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+EF+%5Cright%29%7D%5E%7B2%7D%7D_%7B3%7D%3D%7B%7BA%7D%5E%7B1%7D%7D_%7B%5Crho+%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B%5Csigma+%7D%7B%7BC%7D%5E%7B%5Crho+%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B%5Csigma+%7D%7D_%7B1%7D%5C%5D), 这里当然也采用了重复指标求和.  
+> ┣ 考虑到前面的阶进制数序列替代 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+1%5Cto+11%2C%5C+2%5Cto+12%2C%5C+3%5Cto+21%2C%5C+4%5Cto+22+%5Cright%5C%7D%5C%5D),  
+> ┣ 就有: ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+EF+%5Cright%29%7D%5E%7B2%7D%7D_%7B3%7D%3D%7B%7BA%7D%5E%7B1%7D%7D_%7B%5Crho+%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B%5Csigma+%7D%7B%7BC%7D%5E%7B%5Crho+%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B%5Csigma+%7D%7D_%7B1%7D%5Cto+%7B%7B%5Cleft%28+EF+%5Cright%29%7D%5E%7B12%7D%7D_%7B21%7D%3D%7B%7BA%7D%5E%7B1%7D%7D_%7B%5Crho+%7D%7B%7BB%7D%5E%7B2%7D%7D_%7B%5Csigma+%7D%7B%7BC%7D%5E%7B%5Crho+%7D%7D_%7B2%7D%7B%7BD%7D%5E%7B%5Csigma+%7D%7D_%7B1%7D%5C%5D).  
+> ┣ 推广到一般就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+EF+%5Cright%29%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D%5Cequiv+%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Ctau+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Ceta+%7D%7B%7BC%7D%5E%7B%5Ctau+%7D%7D_%7B%5Crho+%7D%7B%7BD%7D%5E%7B%5Ceta+%7D%7D_%7B%5Csigma+%7D%5C%5D).  
+> ┗ 而我们知道 ![](https://www.zhihu.com/equation?tex=%5C%5BEF%3D%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29%5C%5D).
+
+这样一来我们就有结论:
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%5B+%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29+%5Cright%5D%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D%5Cequiv+%7B%7B%5Cleft%28+EF+%5Cright%29%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D%5Cequiv+%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Ctau+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Ceta+%7D%7B%7BC%7D%5E%7B%5Ctau+%7D%7D_%7B%5Crho+%7D%7B%7BD%7D%5E%7B%5Ceta+%7D%7D_%7B%5Csigma+%7D%5C%5D)  
+> ┣ 其中 ![](https://www.zhihu.com/equation?tex=%5C%5BE%2CF%5C%5D) 都是 (2,2) 型张量, 就是说: ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+EF+%5Cright%29%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D%3D%7B%7BE%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Ctau+%5Ceta+%7D%7B%7BF%7D%5E%7B%5Ctau+%5Ceta+%7D%7D_%7B%5Crho+%5Csigma+%7D%5C%5D).  
+> ┣ 即 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%5B+%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29+%5Cright%5D%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D%3D%7B%7B%5Cleft%28+A%5Cotimes+B+%5Cright%29%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Ctau+%5Ceta+%7D%7B%7B%5Cleft%28+C%5Cotimes+D+%5Cright%29%7D%5E%7B%5Ctau+%5Ceta+%7D%7D_%7B%5Crho+%5Csigma+%7D%5C%5D).  
+> ┗ 结合第一条就是还要求有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+A%5Cotimes+B+%5Cright%29%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Ctau+%5Ceta+%7D%3D%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Ctau+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Ceta+%7D%5C%5D).
+
+综上所述, 我们可以采用如下约定来计算降维升阶的矩阵张量积:
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Crho+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Csigma+%7D%5Cequiv+%7B%7B%5Cleft%28+A%5Cotimes+B+%5Cright%29%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D+%5C%5C+++%26+%7B%7B%5Cleft%28+A%5Cotimes+B+%5Cright%29%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Ctau+%5Ceta+%7D%7B%7B%5Cleft%28+C%5Cotimes+D+%5Cright%29%7D%5E%7B%5Ctau+%5Ceta+%7D%7D_%7B%5Crho+%5Csigma+%7D%5Cequiv+%7B%7B%5Cleft%5B+%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29+%5Cright%5D%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D).
+
+**2.3. 降维张量积的具体计算实例:**
+
+学过群论的同志一定知道降维张量积满足关系 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29%3D%5Cleft%28+AC+%5Cright%29%5Cotimes+%5Cleft%28+BD+%5Cright%29%5C%5D).
+
+> 这个我看好像不少书为了证明这一点都是大费口舌.
+
+实际上通过无敌的 Masaki Notation 可以极其简洁地证明这一点:
+
+> 首先要意识到这四个都是 (2,2) 型张量: ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%5Cleft%28+AC+%5Cright%29%5Cotimes+%5Cleft%28+BD+%5Cright%29%5Cto+%7B%7BT%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D+%5C%5C+++%26+%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cto+%7B%7BE%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D+%5C%5C+++%26+%5Cleft%28+C%5Cotimes+D+%5Cright%29%5Cto+%7B%7BF%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D+%5C%5C+++%26+%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29%5Cto+%7B%7BM%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D)  
+> 然后采用我们降维张量积的指标计算约定:  
+> ┣![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%7B%7B%5Cleft%28+A%5Cotimes+B+%5Cright%29%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D%3D%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Crho+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Csigma+%7D+%5C%5C+++%26+%7B%7B%5Cleft%5B+%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29+%5Cright%5D%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D%3D%7B%7B%5Cleft%28+A%5Cotimes+B+%5Cright%29%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Ctau+%5Ceta+%7D%7B%7B%5Cleft%28+C%5Cotimes+D+%5Cright%29%7D%5E%7B%5Ctau+%5Ceta+%7D%7D_%7B%5Crho+%5Csigma+%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D).  
+> ┣ 即 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29%5Cto+%7B%7B%5Cleft%5B+%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29+%5Cright%5D%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D%5C%5D)  
+> ┣ ![](https://www.zhihu.com/equation?tex=%5C%5B%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5Cequiv+%7B%7B%5Cleft%28+A%5Cotimes+B+%5Cright%29%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Ctau+%5Ceta+%7D%7B%7B%5Cleft%28+C%5Cotimes+D+%5Cright%29%7D%5E%7B%5Ctau+%5Ceta+%7D%7D_%7B%5Crho+%5Csigma+%7D%5C%5D)  
+> ┣ ![](https://www.zhihu.com/equation?tex=%5C%5B%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5Cequiv+%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Ctau+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Ceta+%7D%7B%7BC%7D%5E%7B%5Ctau+%7D%7D_%7B%5Crho+%7D%7B%7BD%7D%5E%7B%5Ceta+%7D%7D_%7B%5Csigma+%7D%5C%5D)  
+> ┣ ![](https://www.zhihu.com/equation?tex=%5C%5B%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%3D%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Ctau+%7D%7B%7BC%7D%5E%7B%5Ctau+%7D%7D_%7B%5Crho+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Ceta+%7D%7B%7BD%7D%5E%7B%5Ceta+%7D%7D_%7B%5Csigma+%7D%5C%5D)  
+> ┣ ![](https://www.zhihu.com/equation?tex=%5C%5B%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%3D%7B%7B%5Cleft%28+AC+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D_%7B%5Crho+%7D%7B%7B%5Cleft%28+BD+%5Cright%29%7D%5E%7B%5Cnu+%7D%7D_%7B%5Csigma+%7D%5C%5D)  
+> ┣ ![](https://www.zhihu.com/equation?tex=%5C%5B%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%3D%7B%7B%5Cleft%5B+%5Cleft%28+AC+%5Cright%29%5Cotimes+%5Cleft%28+BD+%5Cright%29+%5Cright%5D%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D%5Cto+%5Cleft%28+AC+%5Cright%29%5Cotimes+%5Cleft%28+BD+%5Cright%29%5C%5D).  
+> ┗ 一下子就证明完了, 很牛啤对吧?
+
+**2.4. 降维张量积和老百姓张量积可以是一回事:**
+
+> 其实如果你永远只采取指标运算的话, 根本不会碰上这种问题.  
+> ┗ 又一次地显示了指标运算的优越性, 不过指标运算的缺点就是看起来繁琐.
+
+为什么我们说可以是一回事呢?
+
+> 因为这要取决于你如何定义运算 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29%5C%5D).  
+> ┣ 一个极其自然的定义就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29%3D%5Cleft%28+AC+%5Cright%29%5Cotimes+%5Cleft%28+BD+%5Cright%29%5C%5D).  
+> ┣ 那如果你这样定义这个运算的话翻译成指标运算就是:  
+> ┣ ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29%5Cto+%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7BB%7D%5E%7B%5Crho+%7D%7D_%7B%5Csigma+%7D%7B%7BC%7D%5E%7B%5Cnu+%7D%7D_%7B%5Ctau+%7D%7B%7BD%7D%5E%7B%5Csigma+%7D%7D_%7B%5Ceta+%7D%5C%5D)  
+> ┣ 因为这样就有:  
+> ┗ ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7BB%7D%5E%7B%5Crho+%7D%7D_%7B%5Csigma+%7D%7B%7BC%7D%5E%7B%5Cnu+%7D%7D_%7B%5Ctau+%7D%7B%7BD%7D%5E%7B%5Csigma+%7D%7D_%7B%5Ceta+%7D%3D%7B%7B%5Cleft%28+AC+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D_%7B%5Ctau+%7D%7B%7B%5Cleft%28+BD+%5Cright%29%7D%5E%7B%5Crho+%7D%7D_%7B%5Ceta+%7D%5Cto+%5Cleft%28+AC+%5Cright%29%5Cotimes+%5Cleft%28+BD+%5Cright%29%5C%5D).
+
+而降维张量积的运算约定为:
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%7B%7B%5Cleft%28+A%5Cotimes+B+%5Cright%29%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D%3D%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Crho+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Csigma+%7D+%5C%5C+++%26+%7B%7B%5Cleft%5B+%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29+%5Cright%5D%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D%3D%7B%7B%5Cleft%28+A%5Cotimes+B+%5Cright%29%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Ctau+%5Ceta+%7D%7B%7B%5Cleft%28+C%5Cotimes+D+%5Cright%29%7D%5E%7B%5Ctau+%5Ceta+%7D%7D_%7B%5Crho+%5Csigma+%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D)  
+> ┗ 这说明 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+A%5Cotimes+B+%5Cright%29%5Cleft%28+C%5Cotimes+D+%5Cright%29%5Cto+%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Ctau+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Ceta+%7D%7B%7BC%7D%5E%7B%5Ctau+%7D%7D_%7B%5Crho+%7D%7B%7BD%7D%5E%7B%5Ceta+%7D%7D_%7B%5Csigma+%7D%5C%5D).
+
+我们能看到二者是相容的, 所以这样的约定就可以让我们日后对二者不做任何区分.
+
+[附录 A] 张量的初级理解
+--------------
+
+**✦ 张量是基于矢量与对偶矢量定义的概念, 对偶矢量空间可由内积或度规确定:**
+
+定义一个数域 ![](https://www.zhihu.com/equation?tex=P) 上的矢量空间 ![](https://www.zhihu.com/equation?tex=%5C%5BV%5C%5D), 然后可以诱导出一个对偶矢量空间 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D).
+
+> 想诱导出对偶矢量空间只需找到一个 ![](https://www.zhihu.com/equation?tex=%5C%5BV%5Ctimes+V%5Cto+P%5C%5D) 的映射,  
+> 这个映射一般选择内积 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5Clangle+%5Ccdot+%5C+%2C%5Ccdot++%5Cright%5Crangle+%5C%5D) 或度规 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ceta+%5C%5D) , 下面以内积为例:  
+> ┣ 内积运算 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5Clangle+%5Ccdot+%5C+%2C%5Ccdot++%5Cright%5Crangle+%5C%5D) 的作用是对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+u%2Cv%5Cin+V%5C%5D) 有 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5Clangle+u%2Cv+%5Cright%5Crangle+%3Dp%5Cin+P%5C%5D).  
+> ┣ 显然我们可以很自然地建立一个映射 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ctext%7Bdu%3A%7DV%5Cto+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D).  
+> ┣ 具体写出来就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ctext%7Bdu%7D%5Cleft%28+u+%5Cright%29%3D%7B%7Bu%7D%5E%7B%2A%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D), 而 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bu%7D%5E%7B%2A%7D%7D%5C%5D)就是我设计的一个符号罢了.  
+> ┣ 那么 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bu%7D%5E%7B%2A%7D%7D%5C%5D) 满足什么性质呢? 我定义它满足对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+v%5Cin+V%5C%5D) 有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bu%7D%5E%7B%2A%7D%7D%5Cleft%28+v+%5Cright%29%5Cequiv+%5Cleft%5Clangle+u%2Cv+%5Cright%5Crangle+%5C%5D).  
+> ┣ 说玄乎点 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bu%7D%5E%7B%2A%7D%7D%5C%5D) 就是一个线性泛函, 意思是它作用到矢量上会给出一个数.  
+> ┣ 显然这样一来我们就构建了一个与 ![](https://www.zhihu.com/equation?tex=V) 同构的对偶空间 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D).  
+> ┗ 对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+v%5Cin+V%5C%5D), 一定 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cexists+%7B%7Bv%7D%5E%7B%2A%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D)与之对应, ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D)里的元素我们就称之为对偶矢量.
+
+**✦ 张量的本质就是一台没有感情的多重线性映射机器:**
+
+张量是如此的冷酷, 你只要把足够矢量和对偶矢量投入这台机器, 它就会给出一个数.
+
+其实张量有无数多种, 但可以按照需要投入的矢量与对偶矢量的数目进行分类.
+
+比如说 (1,1) 型张量就是投入 ![](https://www.zhihu.com/equation?tex=1) 个对偶矢量与 ![](https://www.zhihu.com/equation?tex=1) 个矢量就得出一个数.
+
+> 我们可以将 (1,1) 型张量记为 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5C%5D), 它对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+u%5Cin+V%2C%7B%7Bv%7D%5E%7B%2A%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D)有 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+u+%5Cright%29%7D%5E%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%2A%7D%7D+%5Cright%29%7D%3Dp%5Cin+P%5C%5D).  
+> ┗ 用映射的语言来说, (1,1) 型张量就是双线性映射 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%3A%7B%7BV%7D%5E%7B%2A%7D%7D%5Ctimes+V%5Cto+P%5C%5D).
+
+比如说 (0,1) 型张量就是投入 ![](https://www.zhihu.com/equation?tex=1) 个矢量就得出一个数.
+
+> 我们可以将 (0,1) 型张量记为 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%7D%5C%5D), 它对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+u%5Cin+V%5C%5D) 有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D_%7B%5Cleft%28+u+%5Cright%29%7D%7D%3Dp%5Cin+P%5C%5D).  
+> ┗ 用映射的语言来说, (0,1) 型张量就是线性映射 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%7D%3AV%5Cto+P%5C%5D).
+
+比如说 (2,1) 型张量就是投入 ![](https://www.zhihu.com/equation?tex=2) 个对偶矢量与 ![](https://www.zhihu.com/equation?tex=1) 个矢量就得出一个数.
+
+> 可以将 (2,1) 型张量记为 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot+%2C%5Ccdot++%5Cright%29%7D%5C%5D), 它对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+u%5Cin+V%3B%5C+%7B%7Bv%7D%5E%7B%2A%7D%7D%2C%7B%7Bw%7D%5E%7B%2A%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D)有 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%7B%7Bu%7D%5E%7B%2A%7D%7D+%5Cright%29%7D%5E%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%2A%7D%7D%2C%7B%7Bw%7D%5E%7B%2A%7D%7D+%5Cright%29%7D%3Dp%5Cin+P%5C%5D).  
+> ┣ 用映射的语言来说, (2,1) 型张量就是三重线性映射 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot+%2C%5Ccdot++%5Cright%29%7D%3A%7B%7BV%7D%5E%7B%2A%7D%7D%5Ctimes+%7B%7BV%7D%5E%7B%2A%7D%7D%5Ctimes+V%5Cto+P%5C%5D).  
+> ┗ 还需要注意的一点是 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+u+%5Cright%29%7D%5E%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%2A%7D%7D%2C%7B%7Bw%7D%5E%7B%2A%7D%7D+%5Cright%29%7D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+u+%5Cright%29%7D%5E%7B%5Cleft%28+%7B%7Bw%7D%5E%7B%2A%7D%7D%2C%7B%7Bv%7D%5E%7B%2A%7D%7D+%5Cright%29%7D%5C%5D) 通常来说是不会相等的.
+
+关键点: 具有两类输入槽, 一个输矢量一个输对偶矢量, 每个槽都是线性的, 输满出一个数.
+
+聪明的你, 一定不需要我再继续比如了吧, 比如说当然可以有 (114, 514) 型张量啊.
+
+**✦ 常见的张量例子:**
+
+(1). 矢量和对偶矢量分别可以视作 (1,0) 型张量与 (0,1) 型张量, and vice versa.
+
+> 对偶矢量 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bu%7D%5E%7B%2A%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D) 的定义不就是对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+v%5Cin+V%5C%5D) 有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bu%7D%5E%7B%2A%7D%7D%5Cleft%28+u+%5Cright%29%3D%5Cleft%5Clangle+u%2Cv+%5Cright%5Crangle+%3Dp%5Cin+P%5C%5D) 吗?  
+> ┗ 这显然就是 (0,1) 张量的定义嘛.  
+> 矢量 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+u%5Cin+V%5C%5D) 如何看作 (1,0) 型张量呢? 重点在于如何定义让它能作用到对偶矢量上.  
+> ┗ 其实很简单, 只要对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%2A%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D) 都定义 ![](https://www.zhihu.com/equation?tex=%5C%5Bu%5Cleft%28+%7B%7Bv%7D%5E%7B%2A%7D%7D+%5Cright%29%5Cequiv+%7B%7Bv%7D%5E%7B%2A%7D%7D%5Cleft%28+u+%5Cright%29%5C%5D) 不就是了吗? 老自然了.
+
+(2). 线性变换 ![](https://www.zhihu.com/equation?tex=%5C%5BM%3AV%5Cto+V%5C%5D) 是一个 (1,1) 型张量, and vice versa.
+
+> 线性变换就是将一个矢量映射到另一个矢量对吧? (1,1) 型张量呢?  
+> ┣ 按定义来说 (1,1) 型张量的作用是将一个矢量和一个对偶矢量一起映射到一个数.  
+> ┣ 写出来就是 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%3A%7B%7BV%7D%5E%7B%2A%7D%7D%5Ctimes+V%5Cto+P%5C%5D) , 若我们就只输入一个矢量 ![](https://www.zhihu.com/equation?tex=%5C%5Bu%5Cin+V%5C%5D) 呢?  
+> ┣ 那么对 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+u+%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5C%5D) 来说是不是再来一个对偶矢量就得到一个数? 即 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+u+%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%3A%7B%7BV%7D%5E%7B%2A%7D%7D%5Cto+P%5C%5D).  
+> ┣ 这就说明投入了一个矢量使 (1,1) 张量退化为 (1,0) 型张量了.  
+> ┣ 而 (1,0) 型张量不就是矢量吗? 所以我们是往 (1,1) 张量里投入矢量后得到了另一个矢量.  
+> ┗ 而从这个角度来看 (1,1) 型张量就是 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%3AV%5Cto+V%5C%5D) 这样的映射, 这不正是线性变换吗?
+
+(3). 度规是一个 (0,2) 型张量.
+
+> 度规的本质是一个线性映射 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ceta+%3AV%5Ctimes+V%5Cto+P%5C%5D), 呃 ··· 证毕.
+
+从这个角度来看, 矢量和对偶矢量就都是张量的特例.
+
+> 它们虽然不处于同一个空间, 但它们所处的空间都是由同一个空间衍生出来的.
+
+**✦ 张量的退化:**
+
+以 (2,3) 型张量 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot+%2C%5Ccdot+%2C%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot+%2C%5Ccdot++%5Cright%29%7D%5C%5D) 为例若输入两个矢量 ![](https://www.zhihu.com/equation?tex=%5C%5Bu%2Cv%5Cin+V%5C%5D) 则变成 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+u%2Cv%2C%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot+%2C%5Ccdot++%5Cright%29%7D%5C%5D).
+
+> 即 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot+%2C%5Ccdot+%2C%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot+%2C%5Ccdot++%5Cright%29%7D%3AV%5Ctimes+V%5Ctimes+V%5Ctimes+%7B%7BV%7D%5E%7B%2A%7D%7D%5Ctimes+%7B%7BV%7D%5E%7B%2A%7D%7D%5Cto+P%5C%5D) 变成 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+u%2Cv%2C%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot+%2C%5Ccdot++%5Cright%29%7D%3AV%5Ctimes+%7B%7BV%7D%5E%7B%2A%7D%7D%5Ctimes+%7B%7BV%7D%5E%7B%2A%7D%7D%5Cto+P%5C%5D).  
+> 就是一个 (2,3) 型退化为 (2,1) 型的过程, 我想这个是很显然的事情就不过多赘述了.
+
+**✦ 是不是太抽象力? 我可以举一个极其具体的例子, 让你直观感受一下:**
+
+![](https://www.zhihu.com/equation?tex=%5C%5BV%3D%5Cleft%5C%7B+%5Ctext%7B%E5%85%A8%E4%BD%93%7D%5C+n%5C+%5Ctext%7B%E7%BB%B4%E5%AE%9E%E5%88%97%E7%9F%A9%E9%98%B5%7D+%5Cright%5C%7D%5C%5D) [[2]](#ref_2) 就构成线性空间, 让我们从前面的角度来研究一下.
+
+(1). 线性空间 ![](https://www.zhihu.com/equation?tex=V) 中的矢量是什么? 是 ![](https://www.zhihu.com/equation?tex=n) 维实列矩阵.
+
+> 这是显然的, 矢量就是线性空间中的元素嘛.
+
+(2). 线性空间 ![](https://www.zhihu.com/equation?tex=V) 上的对偶矢量是什么? 是 ![](https://www.zhihu.com/equation?tex=n) 维实行矩阵.
+
+> 对偶矢量是对偶线性空间 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D) 中的矢量, 本质是 ![](https://www.zhihu.com/equation?tex=%5C%5BV%5Cto+P%5C%5D) 的线性映射.  
+> ┣ 而行矩阵通过矩阵乘法可以将任意列矩阵唯一线性地映射到一个数.  
+> ┣ 前面我们提到的对偶映射 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ctext%7Bdu%7D%3AV%5Cto+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D) 在这里就是转置运算.  
+> ┗ 能如此顺利是因为实列矩阵空间中对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+u%2Cv%5Cin+V%5C%5D) 天然地就定义了内积 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5Clangle+u%2Cv+%5Cright%5Crangle+%3D%7B%7Bu%7D%5E%7B%5Ctext%7BT%7D%7D%7Dv%5C%5D).
+
+(3). 线性空间 ![](https://www.zhihu.com/equation?tex=V) 上的线性变换或者说 (1,1) 型张量是什么? 是 ![](https://www.zhihu.com/equation?tex=%5C%5Bn%5Ctimes+n%5C%5D) 实方矩阵.
+
+> 从定义出发, (1,1) 型张量就是双线性映射 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%3A%7B%7BV%7D%5E%7B%2A%7D%7D%5Ctimes+V%5Cto+P%5C%5D).  
+> ┗ 前面我们证明了它同时也可以看作线性变换 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%3AV%5Cto+V%5C%5D).  
+> 上述两个映射映射观点的等价性在这个例子下也很直观:  
+> ┣ 方阵结合矩阵乘法可以通过右乘一个列矢量来得到一个列矢量, 此即 ![](https://www.zhihu.com/equation?tex=%5C%5BV%5Cto+V%5C%5D).  
+> ┗ 方阵左乘一个行矢量右乘一个列矢量可以得到一个数, 此即 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5Ctimes+V%5Cto+P%5C%5D).
+
+参考
+--
+
+1.  [^](#ref_1_0) 其实就是克罗内克积, 如果你听过的话.
+2.  [^](#ref_2_0) 这里的实指的是 V 是实数域上的线性空间.
