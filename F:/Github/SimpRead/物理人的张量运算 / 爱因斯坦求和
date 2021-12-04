@@ -1,0 +1,865 @@
+> 本文由 [简悦 SimpRead](http://ksria.com/simpread/) 转码， 原文地址 [zhuanlan.zhihu.com](https://zhuanlan.zhihu.com/p/311558501)
+
+> 本文的工作是从集合开始建立一个张量记号体系[1], 未来将推出多篇 DLC 完善整个记号系统: 由上至下是 DLC 的放出顺序: 東雲正樹：[张量系列DLC] 矢量混合运算 / Levi-Civita 符号与 Kronecker delta 東雲正樹：[张…
+
+**本文的工作是从集合开始建立一个张量记号体系** [[1]](#ref_1)**, 未来将推出多篇 DLC 完善整个记号系统:**
+
+由上至下是 DLC 的放出顺序:
+
+> [東雲正樹：[张量系列 DLC] 矢量混合运算 / Levi-Civita 符号与 Kronecker delta](https://zhuanlan.zhihu.com/p/331738362)  
+> [東雲正樹：[张量系列 DLC] 直积和张量积有何区别? 矩阵和矩阵的张量积怎么还是个矩阵?](https://zhuanlan.zhihu.com/p/340956105)  
+> [東雲正樹：[张量系列 DLC] 多层内积空间与泡利矩阵 (Pauli matrices) 的运算性质](https://zhuanlan.zhihu.com/p/340171183)  
+> [東雲正樹：[张量系列 DLC] 洛伦兹变换分量系数的指标能被闵氏度规升降吗?](https://zhuanlan.zhihu.com/p/365457613)  
+> [张量系列 DLC] 一些特殊矩阵的符号设计  
+> [张量系列 DLC] 相对论时空下的张量运算
+
+**我愿称之为 Masaki Notation.**
+
+★
+
+★
+
+终极更新:
+-----
+
+我又写了一份更严谨细致的指标运算总结, 应该就是终极版了, 可以说是一步到位.
+
+但是这个版本要配合一篇前置内容, 学完最基本的线性空间与张量的相关概念才看得懂 [[2]](#ref_2).
+
+所以原来的版本我也不删, 那现在就分两条路, 但最后的效果是差不多的:
+
+**第一条:**
+
+> 先看 [東雲正樹：[前置内容] 从映射到线性空间上的张量](https://zhuanlan.zhihu.com/p/356975719).  
+> 再看 [東雲正樹：終 · 一步到位的张量指标运算](https://zhuanlan.zhihu.com/p/359082678).
+
+**第二条:**
+
+> 先看 [東雲正樹：物理人的张量运算 / 爱因斯坦求和? 何为矩阵? 为何这样乘? 什么是张量?](https://zhuanlan.zhihu.com/p/311558501)  
+> 再看 [東雲正樹：进阶指标运算 - 废除矩阵空间的固定对应](https://zhuanlan.zhihu.com/p/339120822).
+
+第一条路观点更清晰高明整洁, 一步到位, 第二条路啰里八嗦, 但我估计可能更适合新手.
+
+你要问我我肯定无脑推第一条路, 毕竟这个是我的终极版.
+
+反正就是, 总的来说第一条会少走些弯路, 而且实在算不上难.
+
+★
+
+★
+
+**什么是线性空间: [**[click here](https://www.zhihu.com/question/450323486/answer/1790888257)**]**
+
+序言
+--
+
+> 此类贴终结 (笑), 让我来写一个东西, 就绝不端着, 要写就写到木头脑袋都能看懂的程度.
+
+**✦ 整个都是我自己捏造的, 但可以较好地兼容市面上大多数记号体系, 如有雷同纯属巧合.**
+
+> 作者不是数学系的, 思想深刻不到哪去, 也真的是用野鸡数学捏造的体系, 还请批判性地阅读.  
+> ┣ 你会发现将来在市面上见到的大多数体系都会是我这一款的某种简化版,  
+> ┣ 所以学会这个就几乎能看懂市面上大多数记号了, 其它简化版本都是针对特定运算环境的,  
+> ┣ 明明都是同一个数学对象换个环境就要换一套语言在我看来是不可接受的, 故著此文.  
+> ┗ But still, 我必须得浪费点儿时间在这里.
+
+**✦ 爱因斯坦约定, 抽象指标, 广义相对论, 矩阵运算, 张量运算, 逆变矢量协变矢量, 切空间** ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ccdots+%5C%5D)
+
+作为物理人, 一路走来真是辛苦大家了:
+
+> 从标量运算到矢量运算, 这大家都很开心, 结果矩阵来了 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ccdots+%5C%5D)  
+> ┣ 刚爱上有限实阵运算, 又发现在希尔伯特空间不得不更新到无限复阵运算 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ccdots+%5C%5D)  
+> ┣ 才刚刚成为复无限维矩阵运算的懂哥 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ccdots+%5C%5D)  
+> ┣ 结果却发现日后的体系必须用分量运算否则纸面就会太过于杂乱 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ccdots+%5C%5D)  
+> ┗ 互联网一问, 发现大家的记号都不一样, 有些人的甚至不自洽, 噢, 这种感觉还是第一次.  
+> 就说一个矩阵吧, 就有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D_%7B%5Cmu+%5Cnu+%7D%7D%2CT_%7B%5Cnu+%7D%5E%7B%5Cmu+%7D%2C%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%2C%7B%7BT%7D%5E%7Ba%7D%7D_%7Bb%7D%5C%5D) 四种记法, 但他们只很简单的告诉你一个规则:  
+> ┣『重 复 指 标 表 示 全 范 围 求 和』, 你学废了吗?  
+> ┣ 其实确实就可以开始计算了, 也确实能算对, 但你对这个记号的自洽性满意了吗?  
+> ┣ 或者难道你不好奇为何这么诡异的做法能玩得转吗?  
+> ┗ 这还是比较简单的四种, 我还见过画图表示张量的, 那个才叫神秘.
+
+所以本文将比较细致地给出一个运算记号, 同时会讲清楚这样规定的理由, 所以如果你不喜欢我的记号, 想自创一个更好的, 那我这个思路过程也是值得参考的 (たぶん).
+
+**✦ 关于本文:**
+
+> (1). 仅为物理人量身定做, 可能夹杂着让数学人脑中风程度的不严谨表述.  
+> (2). 提供了可用于理解映射, 线性变换, 线性空间, 内积空间, 张量的简洁附录.  
+> (3). 你本身只需要懂最基础的矩阵运算, 最好是还玩过量子力学吧.  
+> (4). 本文有向抽象指标记号看齐得意思, 但又比抽象指标简洁清晰许多.  
+> (5). 看 1.2. 的时候请注意分清楚哪些是系数, 哪些是矢量, 到时候我还会说明的.  
+> (6). 如果你搞广相的, 去学麻烦但不坐标依赖的抽象指标记号 [[3]](#ref_3) 可能更好.
+
+总之本文介绍的是一种缝合记号, 什么主流思想都掺了有一点儿, 这样一来, 将来若想要当叛徒去改用任何一种其它记号也不会那么困难, 或者换个角度说你也可以比较轻松地看懂市面上大多数记号, 然后你搞不好还可以发现他们不自洽的地方, **然后你就可以去质问你的同学了.**
+
+本文最后推导出的结构和量子力学是一致的, 即对偶空间内的事物与原空间差一个转置共轭, 也即厄米共轭. 这是因为对偶矢量空间 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D) 是我们用复内积空间的内积运算诱导出来的. 如果你想不通为何希尔伯特空间的伴随形式是求转置再共轭, 那本文确实能很好地帮助你理解这一点.
+
+如果你用度规 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bg%7D_%7B%5Cmu+%5Cnu+%7D%7D%5C%5D) 去诱导对偶矢量空间就能得到相对论那一套结构, 因为两个系统结构不一样, 所以暂时没有定义升降指标的操作, 但本文的记号及其工作原理都还是适用的.
+
+虽然看懂本文后自己推也应该很简单, 但等有空了我还会补上相对论时空的版本.
+
+> 不过我更推荐你搞懂了什么是洛伦兹群作用之后再来处理这个, 这样会舒服些.
+
+目録
+--
+
+**1. 矩阵与对偶空间的诞生**
+
+> 1.1. 构建对偶矢量空间 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D)  
+> 1.2. 引入方便的表格 - 矩阵  
+> 1.3. 用矩阵刻画线性变换, 矢量与对偶矢量  
+> 1.4. 来验证矢量与对偶矢量的系数吧  
+> 1.5. 矩阵是什么  
+> 1.6. 列矩阵空间
+
+**2. 记号及其工作原理**
+
+> 2.1. 求和约定  
+> 2.2. 用分量表示张量  
+> 2.3. 分量表示张量与求和约定是相辅相成的  
+> 2.4. 构造高阶张量  
+> 2.5. 指标仅进行上下重复求和或缩并  
+> 2.6. 单位矩阵  
+> 2.7. 矩阵求迹与张量的缩并运算
+
+**3. Conclusion**
+
+> 3.1. 玩法总结  
+> 3.2. 矩阵翻译顺序与转置关系  
+> 3.3. 厄米共轭与符号设计的初衷  
+> 3.4. 后日谈
+
+**4. 把基矢也加入求和约定?**
+
+**[附录 A] 映射**
+
+**[附录 B] 线性空间, 线性变换与内积**
+
+**[附录 C] 张量初步**
+
+1. 矩阵与对偶空间的诞生
+-------------
+
+✦ 如果你连映射都没听过就先去看看 **[附录 A]**.
+
+首先我们知道, 一个线性空间只是一个集合罢了, 而里面的元素, 我们称之为矢量, 这些矢量即不是一个列矩阵, 又不是一个有确定长度的箭头, 它们仅仅只是整个集合里的元素. 作为基矢的那些矢量亦然. 然后就是线性空间里面并没有自带一个叫做矩阵的东西, 这只是人为制定的表格. 不知道这一点的去看 **[附录 B]**, 了解一下什么叫做线性空间, 什么又是内积.
+
+**再次强调, 矢量是集合里的一个元素, 它不会天然地变成箭头或者列矩阵, 它暂时没有分量!**
+
+> **千万不要觉得** ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%5C%5D) **是** ![](https://www.zhihu.com/equation?tex=%5C%5Bv%5C%5D) **的第** ![](https://www.zhihu.com/equation?tex=%5C%5B%5Calpha+%5C%5D) **分量,** ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%5C%5D) **本身是个矢量,** ![](https://www.zhihu.com/equation?tex=%5C%5B%5Calpha+%5C%5D) **用于区分其它矢量, 比如说** ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%5C%5D)**.**  
+> **千万不要觉得** ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B1%7D%7D%5C%5D) **是基矢的第一分量,** ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B1%7D%7D%5C%5D) **就是基矢的其中一个, 是矢量.**  
+> **硬要说** ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B1%7D%7D%5C%5D) **的第一分量我会写为** ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D%5C%5D) **, 同理也会有** ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D%5C%5D) **这种记号,**  
+> **不过等最后我们全部构建完了以后, 就再也不会出现这些怪异的记号了.**  
+> **聪明的你也许会说, 把这个非分量的记号放左边呗, 那你怎么确定它不是左边元素分量记号?**  
+> **饶了我吧 hh, 人类发明的符号是有极限的啊 jojo! 只要我最后的体系优美就可以了吧!**
+
+**1.1. 构建对偶矢量空间** ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D)**:**
+
+✦ 先设定好一个 ![](https://www.zhihu.com/equation?tex=2) 维复线性空间 ![](https://www.zhihu.com/equation?tex=%5C%5BV%5C%5D)[[4]](#ref_4), 然后我们定义一个内积运算 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+%5Ccdot+%5C+%2C%5C+%5Ccdot++%5Cright%29%3AV%5Ctimes+V%5Cto+%5Cmathbb%7BC%7D%5C%5D).
+
+内积运算作用是对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%5Cin+V%5C%5D) 有 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D+%5Cright%29%3Dc%5Cin+%5Cmathbb%7BC%7D%5C%5D).
+
+> 对于固定的 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%5C%5D) 可以生成 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%5Ccdot+%5C++%5Cright%29%5C%5D), 这显然是一个 ![](https://www.zhihu.com/equation?tex=%5C%5BV%5Cto+%5Cmathbb%7BC%7D%5C%5D) 的映射或者说线性泛函 [[5]](#ref_5).  
+> ┗ 我们记 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5Cequiv+%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%5C+%5Ccdot++%5Cright%29%5C%5D), 且把这类映射或者说线性泛函所处的空间称为 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D).  
+> 显然我们可以很自然地建立一个映射 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ctext%7Bdu%3A%7DV%5Cto+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D).  
+> ┣ 具体写出来就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ctext%7Bdu%7D%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%3D%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D).  
+> ┣ 那么 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5C%5D) 满足什么性质呢? 我定义它满足 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%3D%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D+%5Cright%29%5C%5D).  
+> ┗ 说玄乎点 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5C%5D) 就是一个线性泛函, 意思是它作用到矢量上会给出一个数.
+
+显然这样一来我们就构建了一个与 ![](https://www.zhihu.com/equation?tex=V) 同构的对偶空间 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D).
+
+> 对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%5Cin+V%5C%5D), 一定 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cexists+%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D)与之对应, ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D)里的元素我们称之为对偶矢量.
+
+**1.2. 引入方便的表格 - 矩阵:**
+
+✦ 矩阵不过是一张人为制定的表格罢了, 现在我们要引入它, 下面的系数都是复数域的数.
+
+为此, 我要现在线性空间里选择一组**标准正交基矢** ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D%5E%7B1%7D%7D%2C%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%5C%7D%5C%5D).
+
+> 对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+v%5Cin+V%5C%5D) 都可以表达为基矢的线性组合 ![](https://www.zhihu.com/equation?tex=%5C%5Bv%3D%7B%7Bv%7D%5E%7B1%7D%7D%7B%7Be%7D%5E%7B1%7D%7D%2B%7B%7Bv%7D%5E%7B2%7D%7D%7B%7Be%7D%5E%7B2%7D%7D%5C%5D)[[6]](#ref_6).  
+> ┣ 注意 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B1%7D%7D%2C%7B%7Bv%7D%5E%7B2%7D%7D%5Cin+%5Cmathbb%7BC%7D%5C%5D) 是系数, 是数, 是复数, 可别以为是矢量; 而 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B1%7D%7D%2C%7B%7Be%7D%5E%7B2%7D%7D%5Cin+V%5C%5D) 是矢量.  
+> ┣ 线性变换 ![](https://www.zhihu.com/equation?tex=%5C%5BM%3AV%5Cto+V%5C%5D) 的作用写白了就是 ![](https://www.zhihu.com/equation?tex=%5C%5BM%5Cleft%28+v+%5Cright%29%3D%7Bv%7D%27%3D%7B%7B%7Bv%7D%27%7D%5E%7B1%7D%7D%7B%7Be%7D%5E%7B1%7D%7D%2B%7B%7B%7Bv%7D%27%7D%5E%7B2%7D%7D%7B%7Be%7D%5E%7B2%7D%7D%5C%5D).  
+> ┣ 然后线性变换满足 ![](https://www.zhihu.com/equation?tex=%5C%5BM%5Cleft%28+v+%5Cright%29%3DM%5Cleft%28+%7B%7Bv%7D%5E%7B1%7D%7D%7B%7Be%7D%5E%7B1%7D%7D%2B%7B%7Bv%7D%5E%7B2%7D%7D%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%29%3D%7B%7Bv%7D%5E%7B1%7D%7DM%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%2B%7B%7Bv%7D%5E%7B2%7D%7DM%5Cleft%28+%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%29%5C%5D).  
+> ┣ 那理论上来说不就是研究清楚了基矢量被怎样映射不就什么都清楚了吗?  
+> ┣ ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft.+%5Cbegin%7Balign%7D+++%26+M%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%3D%7B%7Bc%7D_%7B11%7D%7D%7B%7Be%7D%5E%7B1%7D%7D%2B%7B%7Bc%7D_%7B21%7D%7D%7B%7Be%7D%5E%7B2%7D%7D+%5C%5C+++%26+M%5Cleft%28+%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%29%3D%7B%7Bc%7D_%7B12%7D%7D%7B%7Be%7D%5E%7B1%7D%7D%2B%7B%7Bc%7D_%7B22%7D%7D%7B%7Be%7D%5E%7B2%7D%7D+%5C%5C+++%26+M%5Cleft%28+v+%5Cright%29%3D%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B1%7D%7D%7B%7Be%7D%5E%7B1%7D%7D%2B%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B2%7D%7D%7B%7Be%7D%5E%7B2%7D%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright%5C%7D%5CRightarrow+%5C%5D) ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B1%7D%7D%3D%7B%7Bc%7D_%7B11%7D%7D%7B%7Bv%7D%5E%7B1%7D%7D%2B%7B%7Bc%7D_%7B12%7D%7D%7B%7Bv%7D%5E%7B2%7D%7D+%5C%5C+++%26+%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B2%7D%7D%3D%7B%7Bc%7D_%7B21%7D%7D%7B%7Bv%7D%5E%7B1%7D%7D%2B%7B%7Bc%7D_%7B22%7D%7D%7B%7Bv%7D%5E%7B2%7D%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D).  
+> ┣ 但为了好看, 我们把系数的符号换一下:  
+> ┣ ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft.+%5Cbegin%7Balign%7D+++%26+M%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%3D%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D%7B%7Be%7D%5E%7B1%7D%7D%2B%7B%7BM%7D%5E%7B2%7D%7D_%7B1%7D%7B%7Be%7D%5E%7B2%7D%7D+%5C%5C+++%26+M%5Cleft%28+%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%29%3D%7B%7BM%7D%5E%7B1%7D%7D_%7B2%7D%7B%7Be%7D%5E%7B1%7D%7D%2B%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D%7B%7Be%7D%5E%7B2%7D%7D+%5C%5C+++%26+M%5Cleft%28+v+%5Cright%29%3D%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B1%7D%7D%7B%7Be%7D%5E%7B1%7D%7D%2B%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B2%7D%7D%7B%7Be%7D%5E%7B2%7D%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright%5C%7D%5CRightarrow+%5C%5D) ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B1%7D%7D%3D%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D%7B%7Bv%7D%5E%7B1%7D%7D%2B%7B%7BM%7D%5E%7B1%7D%7D_%7B2%7D%7B%7Bv%7D%5E%7B2%7D%7D+%5C%5C+++%26+%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B2%7D%7D%3D%7B%7BM%7D%5E%7B2%7D%7D_%7B1%7D%7B%7Bv%7D%5E%7B1%7D%7D%2B%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D%7B%7Bv%7D%5E%7B2%7D%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D).  
+> ┣ 那是不是可以简记为: ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BM%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7Bv%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7Bv%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D).  
+> ┣ 现在知道为何要这样规定矩阵的乘法了吧,  
+> ┗ 后面将会看到如果 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D%5E%7B1%7D%7D%2C%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%5C%7D%5C%5D) 不是正交基的话, 线性变换将无法写为矩阵形式.
+
+**1.3. 用矩阵刻画线性变换, 矢量与对偶矢量:**
+
+✦ 前面我们引入了矩阵, 成功地将等式 ![](https://www.zhihu.com/equation?tex=%5C%5B%7Bv%7D%27%3DM%5Cleft%28+v+%5Cright%29%5C%5D) 用矩阵等式表达出来了.
+
+矩阵等式即 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BM%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7Bv%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7Bv%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D), 我们简记为 ![](https://www.zhihu.com/equation?tex=%5C%5B%7Bv%7D%27%3DMv%5C%5D).
+
+> 正是从这一刻开始, 矢量才, 才是一个列矩阵.  
+> ┣ 这下知道为何矢量都可以被列矩阵刻画而线性变换可以被方阵刻画了吧.  
+> ┗ 不过前提是你要先选择好一组标准正交基矢.
+
+✦ 上面是矢量的线性变换, 对偶矢量表达为什么呢? 你大概能猜出来是行矩阵吧.
+
+> 我们已经知道了 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%5Cin+V%5C%5D) 可以写成一个列矩阵 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D).  
+> ┣ 同时 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D) 的定义不就是对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%5Cin+V%5C%5D) 有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%3D%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D+%5Cright%29%3Dc%5Cin+%5Cmathbb%7BC%7D%5C%5D) 吗?  
+> ┣ 那什么与列矩阵作用得到一个数呢? 简直是在频繁或强烈地暗示行矩阵对吧?  
+> ┗ 所以 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5C%5D) 一定要表达为 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B1%7D%7D%2C%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B2%7D%7D+%5Cright%5D%5C%5D).  
+> 那分量究竟是多少呢? 我是说如何确定 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B1%7D%7D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B2%7D%7D%5C%5D) ?  
+> ┣ 按照规则我们要求对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%5Cin+V%5C%5D) 有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%3D%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D+%5Cright%29%3Dc%5Cin+%5Cmathbb%7BC%7D%5C%5D) .  
+> ┣ 空间内有无数矢量欸, 难道不会约束条件过多导致无解吗? 如果你这么想那就太 Naive 了.  
+> ┣ 不管是啥, 作用到矢量上本质不就是研究作用在基矢上吗?  
+> ┗ 正好有几个基矢量就有几个待定分量, 那么最后应该是能完美地唯一确定下来.
+
+值得一提的是, 你大概会想, 是不是对矢量求一个转置就得到一个对偶空间的对偶矢量呢?
+
+> 答案是否定的, 因为这里是复空间, 连接矢量空间与对偶矢量空间的内积的定义会要求你在转置的基础上再加一个共轭才能得到对偶空间的事物.
+
+✦ 标准正交基如何体现? 正交归一基矢对应的对偶矢量如何寻找?
+
+前面指的 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D%5E%7B1%7D%7D%2C%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%5C%7D%5C%5D) 是一组标准正交基得意思是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+%7B%7Be%7D%5E%7Bi%7D%7D%2C%7B%7Be%7D%5E%7Bj%7D%7D+%5Cright%29%3D%7B%7B%5Cdelta+%7D_%7Bij%7D%7D%3D%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+1%2C%5C+%5C+i%3Dj+%5C%5C+++%26+0%2C%5C+%5C+i%5Cne+j+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D).
+
+> 翻成矩阵就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B1%7D%7D%3D1%7B%7Be%7D%5E%7B1%7D%7D%2B0%7B%7Be%7D%5E%7B2%7D%7D%5CRightarrow+%7B%7Be%7D%5E%7B1%7D%7D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++1++%5C%5C++++0++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D), 同理有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B2%7D%7D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++0++%5C%5C++++1++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D).  
+> ┣ 我们定义 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D_%7Bi%7D%7D%7B%7Be%7D%5E%7Bj%7D%7D%3D%5Cleft%28+%7B%7Be%7D%5E%7Bi%7D%7D%2C%7B%7Be%7D%5E%7Bj%7D%7D+%5Cright%29%3D%7B%7B%5Cdelta+%7D_%7Bij%7D%7D%5C%5D) 的话, 如何设计这个对偶矢量 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D_%7Bi%7D%7D%5C%5D) 呢?  
+> ┣ 有一个神秘的做法, 前面我们不是说对偶基矢本质是线性泛函吗? 应该看作是矢量的函数.  
+> ┣ 于是我们就将它设定为 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D_%7Bi%7D%7D%3D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7Bi%7D%7D%7D%5C%5D), 这样一来 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D_%7Bi%7D%7D%7B%7Be%7D%5E%7Bj%7D%7D%3D%5Cfrac%7B%5Cpartial+%7B%7Be%7D%5E%7Bj%7D%7D%7D%7B%5Cpartial+%7B%7Be%7D%5E%7Bi%7D%7D%7D%3D%7B%7B%5Cdelta+%7D_%7Bij%7D%7D%5C%5D) 是不是就很巧妙?  
+> ┣ 于是乎就自动有 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D_%7B1%7D%7D%2C%7B%7Be%7D_%7B2%7D%7D+%5Cright%5C%7D%5C%5D) 作为对偶空间的基矢, 其中 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%7B%7Be%7D_%7B1%7D%7D%3D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B1%7D%7D%7D+%5C%5C+++%26+%7B%7Be%7D_%7B2%7D%7D%3D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B2%7D%7D%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D).  
+> ┗ 结合前面的说法就有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D_%7B1%7D%7D%3D%5Cleft%5B+1%2C0+%5Cright%5D%2C%5C+%7B%7Be%7D_%7B2%7D%7D%3D%5Cleft%5B+0%2C1+%5Cright%5D%5C%5D).
+
+**1.4. 来验证矢量与对偶矢量的系数吧:**
+
+✦ 在很久很久以前, 对一个矢量我们一般怎么求分量的? 用基矢去点乘 (即做内积) 对吧?
+
+> 比如说 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cvec%7Br%7D%3D%5Csum%5Climits_%7Bi%7D%7B%7B%7Bx%7D_%7Bi%7D%7D%7B%7B%7B%5Cvec%7Be%7D%7D%7D_%7Bi%7D%7D%7D%5CRightarrow+%7B%7Bx%7D_%7Bj%7D%7D%3D%5Cvec%7Br%7D%5Ccdot+%7B%7B%7B%5Cvec%7Be%7D%7D%7D_%7Bj%7D%7D%3D%5Csum%5Climits_%7Bi%7D%7B%7B%7Bx%7D_%7Bi%7D%7D%7B%7B%7B%5Cvec%7Be%7D%7D%7D_%7Bi%7D%7D%5Ccdot+%7B%7B%7B%5Cvec%7Be%7D%7D%7D_%7Bj%7D%7D%7D%3D%5Csum%5Climits_%7Bi%7D%7B%7B%7Bx%7D_%7Bi%7D%7D%7B%7B%5Cdelta+%7D_%7Bij%7D%7D%7D%3D%7B%7Bx%7D_%7Bj%7D%7D%5C%5D).  
+> ┗ ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%7C+%5Cpsi++%5Cright%5Crangle+%3D%5Csum%5Climits_%7Bn%7D%7B%7B%7Bc%7D_%7Bn%7D%7D%5Cleft%7C+%7B%7B%5Cvarphi+%7D_%7Bn%7D%7D+%5Cright%5Crangle+%7D%5CRightarrow+%7B%7Bc%7D_%7Bm%7D%7D%3D%5Cleft%5Clangle++%7B%7B%5Cvarphi+%7D_%7Bm%7D%7D+%7C+%5Cpsi++%5Cright%5Crangle+%3D%5Csum%5Climits_%7Bn%7D%7B%7B%7Bc%7D_%7Bn%7D%7D%5Cleft%5Clangle++%7B%7B%5Cvarphi+%7D_%7Bm%7D%7D+%7C+%7B%7B%5Cvarphi+%7D_%7Bn%7D%7D+%5Cright%5Crangle+%7D%3D%7B%7Bc%7D_%7Bm%7D%7D%5C%5D), 懂得都懂哈.
+
+✦ 那么, 现在确定矢量 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%5Cin+V%5C%5D) 的系数也是做内积:
+
+比如说考察 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%3D%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D%7B%7Be%7D%5E%7B1%7D%7D%2B%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B2%7D%7D%7B%7Be%7D%5E%7B2%7D%7D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D).
+
+> 显然有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D%3D%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D%2C%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%3D%7B%7Be%7D_%7B1%7D%7D%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%3D%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D%5Cfrac%7B%5Cpartial+%7B%7Be%7D%5E%7B1%7D%7D%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B1%7D%7D%7D%2B%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B2%7D%7D%5Cfrac%7B%5Cpartial+%7B%7Be%7D%5E%7B2%7D%7D%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B1%7D%7D%7D%3D%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D%5C%5D).  
+> ┗ 或者矩阵的思路来 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D%3D%7B%7Be%7D_%7B1%7D%7D%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%3D%5Cleft%5B+1%2C0+%5Cright%5D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D%5C%5D), 都是自洽的.
+
+✦ 那么, 现在确定对偶矢量矢量 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D) 的系数也是做内积:
+
+比如说考察 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%3D%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B1%7D%7D%7B%7Be%7D_%7B1%7D%7D%2B%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B2%7D%7D%7B%7Be%7D_%7B2%7D%7D%3D%5Cleft%5B+%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B1%7D%7D%2C%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B2%7D%7D+%5Cright%5D%5C%5D).
+
+> 显然有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B1%7D%7D%3D%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%3D%7B%7Bv%7D_%7B%5Calpha+%7D%7D%7B%7Be%7D%5E%7B1%7D%7D%3D%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B1%7D%7D%5Cfrac%7B%5Cpartial+%7B%7Be%7D%5E%7B1%7D%7D%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B1%7D%7D%7D%2B%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B2%7D%7D%5Cfrac%7B%5Cpartial+%7B%7Be%7D%5E%7B1%7D%7D%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B2%7D%7D%7D%3D%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B1%7D%7D%5C%5D).  
+> ┣ 但没这么简单, 细心的你可能发现 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%5C%5D) 有点儿似曾相识啊,  
+> ┣ 前面我们有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D%3D%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D%2C%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%5C%5D), 最初内积是要求 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D+%5Cright%29%3D%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%2C%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B%2A%7D%7D%5C%5D)的.  
+> ┣ 所以呢, 对偶矢量的系数刚好就是对应矢量系数的共轭复数.  
+> ┣ 绕了老半天, 其实, 这就是量子力学里面的厄米共轭对吧, 但我这个可是讲清楚了的.  
+> ┗ 按照矩阵的思路来 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%7B%7Be%7D%5E%7B1%7D%7D%3D%5Cleft%5B+%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B1%7D%7D%2C%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B2%7D%7D+%5Cright%5D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++1++%5C%5C++++0++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B1%7D%7D%5C%5D), 太显然了反而有点儿好笑.
+
+这里出现的厄米共轭解释了上一节提到的转置不能连接两个空间的转化, 但实内积空间是可以办到这一点的, 因为实内积空间的厄米共轭不就是转置吗?
+
+**1.5. 矩阵是什么:**
+
+✦ 方阵是怎么摆出来的?
+
+答案就是这样: ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+M%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BM%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D+%5C%5C+++%26+M%3D%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D%7B%7Be%7D%5E%7B1%7D%7D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B1%7D%7D%7D%2B%7B%7BM%7D%5E%7B1%7D%7D_%7B2%7D%7B%7Be%7D%5E%7B1%7D%7D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B2%7D%7D%7D%2B%7B%7BM%7D%5E%7B2%7D%7D_%7B1%7D%7B%7Be%7D%5E%7B2%7D%7D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B1%7D%7D%7D%2B%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D%7B%7Be%7D%5E%7B2%7D%7D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B2%7D%7D%7D.+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D)
+
+> 怪欸, ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D_%7Bi%7D%7D%7B%7Be%7D%5E%7Bj%7D%7D%3D%5Cleft%28+%7B%7Be%7D%5E%7Bi%7D%7D%2C%7B%7Be%7D%5E%7Bj%7D%7D+%5Cright%29%3D%5Cfrac%7B%5Cpartial+%7B%7Be%7D%5E%7Bj%7D%7D%7D%7B%5Cpartial+%7B%7Be%7D%5E%7Bi%7D%7D%7D%3D%7B%7B%5Cdelta+%7D_%7Bij%7D%7D%5C%5D) 是知道的, ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7Bi%7D%7D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7Bj%7D%7D%7D%5C%5D) 是个啥啊?  
+> ┗ 其实 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7Bi%7D%7D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7Bj%7D%7D%7D%3D%7B%7Be%7D%5E%7Bi%7D%7D%7B%7Be%7D_%7Bj%7D%7D%3D%7B%7Be%7D%5E%7Bi%7D%7D%5Cotimes+%7B%7Be%7D_%7Bj%7D%7D%3D%7B%7Be%7D%5E%7Bi%7D%7D%5Cotimes+%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7Bj%7D%7D%7D%5C%5D) 是张量积的意思, 就是放那不相互作用.  
+> 具体到 ![](https://www.zhihu.com/equation?tex=1) 行 ![](https://www.zhihu.com/equation?tex=2) 列, ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B1%7D%7D%5Cotimes+%7B%7Be%7D_%7B2%7D%7D%5C%5D) 是抽象矢量张量积, ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B1%7D%7D%7B%7Be%7D_%7B2%7D%7D%5C%5D) 是矩阵乘法, 碰巧是一回事.  
+> ┗ 作为矩阵的乘法标记的就是 ![](https://www.zhihu.com/equation?tex=1) 行 ![](https://www.zhihu.com/equation?tex=2) 列 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B1%7D%7D%7B%7Be%7D_%7B2%7D%7D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++1++%5C%5C++++0++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5Cleft%5B+0%2C1+%5Cright%5D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++0+%26+1++%5C%5C++++0+%26+0++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%7B%7Be%7D%5E%7B1%7D%7D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B2%7D%7D%7D%5C%5D).  
+> 是不是巨爽, 接下来你还可以自行验证能否通过基矢与对偶基矢作用获得分量.  
+> ┣ 或者进一步说矩阵的乘法究竟在我约定的体系下是否自洽,  
+> ┗ 肯定是自洽的, 但我懒得试了, 留给大家玩.
+
+✦ 单位阵, 永远需要单位阵:
+
+单位阵 ![](https://www.zhihu.com/equation?tex=%5C%5BI%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++1+%26+0++%5C%5C++++0+%26+1++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D) 又是怎么摆出来的? 从上一段能看出眉目吧?
+
+没错 ![](https://www.zhihu.com/equation?tex=%5C%5BI%3D%7B%7Be%7D%5E%7B1%7D%7D%7B%7Be%7D_%7B1%7D%7D%2B%7B%7Be%7D%5E%7B2%7D%7D%7B%7Be%7D_%7B2%7D%7D%3D%7B%7Be%7D%5E%7B1%7D%7D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B1%7D%7D%7D%2B%7B%7Be%7D%5E%7B2%7D%7D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B2%7D%7D%7D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++1+%26+0++%5C%5C++++0+%26+0++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%2B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++0+%26+0++%5C%5C++++0+%26+1++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D).
+
+**1.6. 列矩阵 l 空间:**
+
+这部分不是很重要, 但仍提一下. 虽然我们的矩阵都是诱导出来的, 但实际上即使离开了一开始给定的线性空间 ![](https://www.zhihu.com/equation?tex=V), 在 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cmathbb%7BR%7D%7D%5E%7Bn%7D%7D%5Cequiv+%5Cleft%5C%7B+%5Cleft%28+%7B%7Br%7D_%7B1%7D%7D%2C%7B%7Br%7D_%7B2%7D%7D%2C%5Ccdots+%2C%7B%7Br%7D_%7Bn%7D%7D+%5Cright%29%7C%7B%7Br%7D_%7B1%7D%7D%2C%7B%7Br%7D_%7B2%7D%7D%2C%5Ccdots+%2C%7B%7Br%7D_%7Bn%7D%7D%5Cin+%5Cmathbb%7BR%7D+%5Cright%5C%7D%5C%5D) 或 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cmathbb%7BC%7D%7D%5E%7Bn%7D%7D%5C%5D) 中仍然能凭空创造这样的表格, 然后称之为矩阵, 再定义矩阵的乘法, 加法和数乘 (就是说动机比较迷惑).
+
+这样你就会很自然地发现, 所有的列矩阵可以构成一个矢量空间, 甚至是一个内积空间. 所以我们才会把列矩阵称之为列向量或者列矢量. 而在矩阵乘法的语境下, 行矩阵其实可以看作是对偶空间的对偶矢量, 由此我们才说矩阵是一个 (1,1) 型张量, 因为矩阵可以将一个对偶矢量与一个矢量的组合唯一地映射到一个数.
+
+然后像是其它矢量空间里面的元素与线性变换 somehow 用矩阵表示出来了的本质就是一种同构映射来完成的, 这里如果你没学过相关理论我再讲你也是云里雾里.
+
+总之我的意思就是, 列矩阵可以看作矢量的一种, 但别人一提矢量你脑子里就搁那冒出表格来就有点儿本末倒置吧, 父子局, 谁是爸爸谁是儿子可要搞清楚.
+
+至于说别人一提矢量你第一反应要是一个有向箭头 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ccdots+%5C%5D) 这, 别太过分了物理人.
+
+2. 记号及其工作原理
+-----------
+
+**2.1. 求和约定:**
+
+✦ 所谓求和约定就是对上下重复的指标全范围求和.
+
+比如说式子 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Cmu+%7D%7D%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 中的 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cmu+%5C%5D) 就是重复指标, 所以它代表的意思是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Csum%5Climits_%7B%5Cmu+%7D%7B%7B%7Bv%7D_%7B%5Cmu+%7D%7D%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%7D%5C%5D).
+
+> 进一步说就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5Clangle++v+%7C+v+%5Cright%5Crangle+%3D%5Cleft%5B+%7B%7Bv%7D_%7B1%7D%7D%2C%7B%7Bv%7D_%7B2%7D%7D+%5Cright%5D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7Bv%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7Bv%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%7B%7Bv%7D_%7B1%7D%7D%7B%7Bv%7D%5E%7B1%7D%7D%2B%7B%7Bv%7D_%7B2%7D%7D%7B%7Bv%7D%5E%7B2%7D%7D%3D%5Csum%5Climits_%7B%5Cmu+%7D%7B%7B%7Bv%7D_%7B%5Cmu+%7D%7D%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%7D%3D%7B%7Bv%7D_%7B%5Cmu+%7D%7D%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%5C%5D).  
+> ┣ 所以这一套你要想用来玩量子力学, 也可以的, 就是有点儿老吃饱了撑的了,  
+> ┗ 你量子力学根本没有其它形式的张量好吗? 这里不要 NTR, 我爱狄拉克符号.
+
+✦ 再举一个带有方阵的例子: ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B%5Cmu+%7D%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bv%7D%5E%7B%5Cnu+%7D%7D%5C%5D).
+
+> 重复指标是谁! 是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cnu+%5C%5D)! 好, 那就对它求和! Sir, Yes Sir!  
+> ┣ ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B%5Cmu+%7D%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bv%7D%5E%7B%5Cnu+%7D%7D%3D%5Csum%5Climits_%7B%5Cnu+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bv%7D%5E%7B%5Cnu+%7D%7D%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B1%7D%7B%7Bv%7D%5E%7B1%7D%7D%2B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B2%7D%7B%7Bv%7D%5E%7B2%7D%7D%5C%5D).  
+> ┗ 还记得前面的 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B1%7D%7D%3D%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D%7B%7Bv%7D%5E%7B1%7D%7D%2B%7B%7BM%7D%5E%7B1%7D%7D_%7B2%7D%7B%7Bv%7D%5E%7B2%7D%7D+%5C%5C+++%26+%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B2%7D%7D%3D%7B%7BM%7D%5E%7B2%7D%7D_%7B1%7D%7B%7Bv%7D%5E%7B1%7D%7D%2B%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D%7B%7Bv%7D%5E%7B2%7D%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D) 吗? 上面确实给出了分量 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%7B%7Bv%7D%27%7D%7D%5E%7B%5Cmu+%7D%7D%5C%5D)对吧.
+
+**2.2. 用分量表示张量:**
+
+✦ 矢量是 (1,0) 型张量, 矩阵是 (1,1) 型张量, 有一个很奇妙的做法就是用分量表示张量.
+
+> 什么! 你根本不知道什么是张量? 请参阅 **[附录 C]**.
+
+就是说分别用 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%2C%7B%7Bv%7D_%7B%5Cmu+%7D%7D%2C%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D) 来表示矢量, 对偶矢量, (1,1) 型张量,
+
+说白了也就是分别用 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%2C%7B%7Bv%7D_%7B%5Cmu+%7D%7D%2C%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D)来表示 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7Bv%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7Bv%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D), ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%7B%7Bv%7D_%7B1%7D%7D%2C%7B%7Bv%7D_%7B2%7D%7D+%5Cright%5D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BM%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D).
+
+> 这样的好处是能一眼看出是什么型的张量,  
+> ┗ 比如说上面有 ![](https://www.zhihu.com/equation?tex=m) 个指标下面有 ![](https://www.zhihu.com/equation?tex=n) 个指标的张量就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+m%2Cn+%5Cright%29%5C%5D) 型张量.
+
+✦ 简单来说就是, ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7Bv%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7Bv%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D) 的分量通项, 任意分量自然包含了张量的全部信息.
+
+> 所以 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 可以表示 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7Bv%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7Bv%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D), 同理可得 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D) 作为分量通项可以表示 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BM%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D).
+
+接下来我们考虑矩阵运算 ![](https://www.zhihu.com/equation?tex=%5C%5Bv%3DMu%5C%5D), 写开就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7Bv%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7Bv%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BM%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7Bu%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7Bu%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D).
+
+矩阵运算, 懂得都懂, 比标量运算可麻烦多了, 现在我们基于求和约定写出 ![](https://www.zhihu.com/equation?tex=v) 分量的表达式:
+
+![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%7B%7Bv%7D%5E%7B1%7D%7D%3D%7B%7BM%7D%5E%7B1%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D+%5C%5C+++%26+%7B%7Bv%7D%5E%7B2%7D%7D%3D%7B%7BM%7D%5E%7B2%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D), 不难发现我们实际上可以写出分量通项 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D%5C%5D).
+
+在重复指标求和约定下的分量通项 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D%5C%5D) 等于说是用三个标量表达了矩阵的运算.
+
+> 这是实实在在的标量运算, 你会发现 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D) 没有任何问题.
+
+这正是重复指标求和的精华所在, 它巧妙地抓住了矩阵运算的内蕴结构, 解构了张量运算.
+
+让我们得以回到标量运算的年代.
+
+> 顺带一提你会发现 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Crho+%7D%7B%7Bu%7D%5E%7B%5Crho+%7D%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Csigma+%7D%7B%7Bu%7D%5E%7B%5Csigma+%7D%7D%5C%5D), 就是说重复指标可以随便你换符号.
+
+✦ 一言蔽之:
+
+张量 (或者说矩阵) 的运算, 终究归结为分量的运算, 那么我们就可以把分量看作张量本身.
+
+**2.3. 分量表示张量与求和约定是相辅相成的:**
+
+为了照顾第一次接触这套系统的人, 我决定再总体讲述一下这一切是怎么回事.
+
+✦ 我们设定标准正交基 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7C%5Cmu+%5Cin+%7B%7B%5Cmathbb%7BN%7D%7D_%7B%2B%7D%7D+%5Cright%5C%7D%5C%5D) 与对偶基 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D_%7B%5Cmu+%7D%7D%7C%5Cmu+%5Cin+%7B%7B%5Cmathbb%7BN%7D%7D_%7B%2B%7D%7D+%5Cright%5C%7D%5C%5D).
+
+✦ 现在我们设定矩阵与矢量 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+M%3D%5Csum%5Climits_%7B%5Cmu+%5Cnu+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D_%7B%5Cnu+%7D%7D%7D+%5C%5C+++%26+%5Calpha+%3D%5Csum%5Climits_%7B%5Cmu+%7D%7B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7D+%5C%5C+++%26+%5Cbeta+%3DMu%3D%5Csum%5Climits_%7B%5Cmu+%7D%7B%5Cleft%28+%5Csum%5Climits_%7B%5Cnu+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D%7D+%5Cright%29%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7D%3D%5Csum%5Climits_%7B%5Cmu+%7D%7B%7B%7B%5Cbeta+%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7D+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D)
+
+✦ 上面都是张量在坐标系下最标准的写法, 这都是如何得到的呢? 最死板的运算就是:
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cbegin%7Balign%7D+++%26+Mu%3D%5Csum%5Climits_%7B%5Cmu+%5Cnu+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D_%7B%5Cnu+%7D%7D%7D%5Csum%5Climits_%7B%5Crho+%7D%7B%7B%7B%5Calpha+%7D%5E%7B%5Crho+%7D%7D%7B%7Be%7D%5E%7B%5Crho+%7D%7D%7D+%5C%5C+++%26+%5C+%5C+%5C+%5C+%5C+%5C+%3D%5Csum%5Climits_%7B%5Cmu+%5Cnu+%5Crho+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Calpha+%7D%5E%7B%5Crho+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D_%7B%5Cnu+%7D%7D%7B%7Be%7D%5E%7B%5Crho+%7D%7D%7D%3D%5Csum%5Climits_%7B%5Cmu+%5Cnu+%5Crho+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Calpha+%7D%5E%7B%5Crho+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%5Cdelta+_%7B%5Cnu+%7D%5E%7B%5Crho+%7D%7D+%5C%5C+++%26+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%5C+%3D%5Csum%5Climits_%7B%5Cmu+%5Cnu+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Calpha+%7D%5E%7B%5Cnu+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7D%3D%5Csum%5Climits_%7B%5Cmu+%7D%7B%7B%7B%5Cbeta+%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7D%3D%5Cbeta+.+%5C%5C++%5Cend%7Balign%7D%5C%5D)
+
+观察上述运算, 如果我们将重复指标的求和去掉就会变成:
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5BM%5Calpha+%3D%5Csum%5Climits_%7B%5Cmu+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Calpha+%7D%5E%7B%5Cnu+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7D%3D%5Csum%5Climits_%7B%5Cmu+%7D%7B%7B%7B%5Cbeta+%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7D%3D%5Cbeta+%5C%5D).
+
+但这没意思, 还是不可对易的运算, 求和号也还在, 那我们试试去头去尾, 分量表述张量:
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%5Csum%5Climits_%7B%5Cmu+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Calpha+%7D%5E%7B%5Cnu+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7D%3D%5Csum%5Climits_%7B%5Cmu+%7D%7B%7B%7B%5Cbeta+%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7D%5Cto+%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Calpha+%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7B%5Cbeta+%7D%5E%7B%5Cmu+%7D%7D%5C%5D).
+
+你一定发现了吧, 上述过程是没有信息丢失的.
+
+反着来, 我们可以很轻松地从 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Calpha+%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7B%5Cbeta+%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 还原回 ![](https://www.zhihu.com/equation?tex=%5C%5BM%5Calpha+%3D%5Cbeta+%5C%5D).
+
+> 但完全没有做这种还原的必要.
+
+✦ 所以我们干脆就说了: 用 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D) 表示 ![](https://www.zhihu.com/equation?tex=M), ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 表示 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Calpha+%5C%5D), ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cbeta+%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 表示 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cbeta+%5C%5D).
+
+这样一来矩阵运算 ![](https://www.zhihu.com/equation?tex=%5C%5BM%5Calpha+%3D%5Cbeta+%5C%5D) 就没有任何信息丢失地变成了标量运算 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Calpha+%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7B%5Cbeta+%7D%5E%7B%5Cmu+%7D%7D%5C%5D).
+
+✦ 那我怎么知道你这个是分量运算的式子还是张量运算的式子呢?
+
+> 从计算过程来看, 你把 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Calpha+%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7B%5Cbeta+%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 看作张量运算肯定是运算一点儿问题没有.  
+> ┣ 但说实话, 当作分量运算的式子也没有毛病罢? 二者是兼容的啊.  
+> ┣ 所以结论就是, 即是分量运算的式子又是张量运算的式子.  
+> ┣ 打个比方这就是在用数列的通项表示数列本身,  
+> ┗ 通项看作是数列本身与看作是数列中的其中一项有什么冲突吗?
+
+**2.4. 构造高阶张量:**
+
+✦ 还有个小问题啊, 张量积怎么搞? 前面不是说 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7Bi%7D%7D%7B%7Be%7D_%7Bj%7D%7D%3D%7B%7Be%7D%5E%7Bi%7D%7D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7Bj%7D%7D%7D%5Cne+%5Cfrac%7B%5Cpartial+%7B%7Be%7D%5E%7Bi%7D%7D%7D%7B%5Cpartial+%7B%7Be%7D%5E%7Bj%7D%7D%7D%3D%7B%7Be%7D_%7Bj%7D%7D%7B%7Be%7D%5E%7Bi%7D%7D%5C%5D) 吗?
+
+> 其实不用担心, 采用约定以后再也不需要担心顺序问题了.  
+> ┗ 现在重复指标就是求内积, 就是求和, 就是指标缩并, 那张量积就是不重复指标呗.
+
+✦ 以前的 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D_%7B1%7D%7D%7B%7Be%7D%5E%7B2%7D%7D%3D%5Cfrac%7B%5Cpartial+%7B%7Be%7D%5E%7B2%7D%7D%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B1%7D%7D%7D%5C%5D) 现在表达为:
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D_%7B1%7D%7D+%5Cright%29%7D_%7B%5Cmu+%7D%7D%3D%7B%7B%5Cleft%28+%7B%7Be%7D_%7B1%7D%7D+%5Cright%29%7D_%7B%5Cmu+%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D%3D%7B%7B%5Cleft%28+%7B%7Be%7D_%7B1%7D%7D+%5Cright%29%7D_%7B1%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D%2B%7B%7B%5Cleft%28+%7B%7Be%7D_%7B1%7D%7D+%5Cright%29%7D_%7B2%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%29%7D%5E%7B2%7D%7D%3D1%5Ccdot+0%2B0%5Ccdot+1%3D0%5C%5D).
+
+✦ 以前的 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B1%7D%7D%7B%7Be%7D_%7B2%7D%7D%3D%7B%7Be%7D%5E%7B1%7D%7D%5Cfrac%7B%5Cpartial+%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B2%7D%7D%7D%5C%5D) 现在表达为: ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D_%7B2%7D%7D+%5Cright%29%7D_%7B%5Cnu+%7D%7D%5C%5D) 或 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Be%7D_%7B2%7D%7D+%5Cright%29%7D_%7B%5Cnu+%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D%5C%5D).
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D_%7B2%7D%7D+%5Cright%29%7D_%7B%5Cnu+%7D%7D%3D%7B%7B%5Cleft%28+%7B%7Be%7D_%7B2%7D%7D+%5Cright%29%7D_%7B%5Cnu+%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 本质是一个 (1,1) 型张量的分量了.  
+> ┣ 但我们又约定分量代表张量本身所以这就是一个 (1,1) 型张量.  
+> ┣ 张量可以写成矩阵, 但是我们为了和以前的约定统一就还是要求把矢量写左边儿,  
+> ┣ 然后左指标对应行右指标对应列地写出矩阵,  
+> ┗ 于是张量就表达为: ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D_%7B2%7D%7D+%5Cright%29%7D_%7B1%7D%7D+%26+%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B1%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D_%7B2%7D%7D+%5Cright%29%7D_%7B2%7D%7D++%5C%5C++++%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B2%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D_%7B2%7D%7D+%5Cright%29%7D_%7B1%7D%7D+%26+%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B2%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D_%7B2%7D%7D+%5Cright%29%7D_%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++0+%26+1++%5C%5C++++0+%26+0++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D), 完美, 对吧?  
+> 值得一提的是, 作为分量有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D_%7B2%7D%7D+%5Cright%29%7D_%7B%5Cnu+%7D%7D%3D%7B%7B%5Cleft%28+%7B%7Be%7D_%7B2%7D%7D+%5Cright%29%7D_%7B%5Cnu+%7D%7D%7B%7B%5Cleft%28+%7B%7Be%7D%5E%7B1%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D%5C%5D), 但翻译成矩阵二者差个转置.  
+> ┗ 后面我们会详细分析这个问题, 这里先放一放.
+
+✦ 那这样我们就可以通过张量积构造出高阶张量:
+
+> 比如 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D%7B%7Bw%7D_%7B%5Crho+%7D%7D%7B%7B%5CLambda+%7D%5E%7B%5Csigma+%5Ctau+%7D%7D%3D%7B%7BT%7D%5E%7B%5Cmu+%5Cnu+%7D%7D%7B%7B_%7B%5Crho+%7D%7D%5E%7B%5Csigma+%5Ctau+%7D%7D%5C%5D).  
+> ┗ 但关键点是, 指标一定要错开, 别对齐了, 后面你会发现这样很有必要.
+
+**2.5. 指标仅进行上下重复求和或缩并:**
+
+✦ 如果是上上指标或者下下指标重复了呢? 比如说 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%7B%7Bu%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 或者 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Cmu+%7D%7D%7B%7Bw%7D_%7B%5Cmu+%7D%7D%5C%5D).
+
+> 答案就是我们不允许这样写, 不会出现这种情况.  
+> ┗ 比如说对 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Cmu+%7D%7D%7B%7Bw%7D_%7B%5Cmu+%7D%7D%5C%5D), 你想表达矢量 ![](https://www.zhihu.com/equation?tex=u) 与对偶矢量 ![](https://www.zhihu.com/equation?tex=w) 作用, 你怎么写? ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cnu+%7D_%7B%5Cmu+%7D%7D%7B%7Bw%7D_%7B%5Cmu+%7D%7D%7B%7Bu%7D%5E%7B%5Cmu+%7D%7D%5C%5D)?
+
+**2.6. 单位矩阵:**
+
+✦ 前面我们提到了 ![](https://www.zhihu.com/equation?tex=%5C%5BI%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++1+%26+0++%5C%5C++++0+%26+1++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%7B%7Be%7D%5E%7B1%7D%7D%7B%7Be%7D_%7B1%7D%7D%2B%7B%7Be%7D%5E%7B2%7D%7D%7B%7Be%7D_%7B2%7D%7D%3D%5Csum%5Climits_%7B%5Cmu+%7D%7B%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D_%7B%5Cmu+%7D%7D%7D%5C%5D).
+
+> 按照抽象指标的规定, 我们省去求和, 单位阵就表达为 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D_%7B%5Cmu+%7D%7D%5C%5D), 是这样吗?  
+> ┣ 当然不是啊, 这里的 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cmu+%5C%5D) 是用来指明第几个基矢的, 又不是什么坐标分量指标.  
+> ┣ Wait, 如果左边当成分量, 右边当作矢量岂不是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B1%7D%7D%7B%7Be%7D_%7B1%7D%7D%2B%7B%7Be%7D%5E%7B2%7D%7D%7B%7Be%7D_%7B2%7D%7D%3D%5Cleft%5B+%7B%7Be%7D%5E%7B1%7D%7D%2C%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%5D%5C%5D)?  
+> ┣ 很诱人, 但很不合法, 拿矢量当系数? 有定义过这种东西吗?  
+> ┣ 没有, 你要觉得行得通可以自己定义, 反正数学都是人造的.  
+> ┗ 但我不想搞这种莫名其妙的东西了.
+
+✦ 谢天谢地, 我们从另一个角度出发, 单位阵本身是什么? 矩阵对吧, 也就是 (1,1) 型张量.
+
+> 老规矩, 分量表示张量, 单位阵的分量大家都懂, 即 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cdelta+%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D)对吧?
+
+✦ 验证一下这样规定是否自洽.
+
+> 单位阵作用矢量得到它自己 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cdelta+%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bv%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%5C%5D), 理解如下:  
+> ┗ ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cdelta+%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bv%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7B%5Cdelta+%7D%5E%7B%5Cmu+%7D%7D_%7B1%7D%7B%7Bv%7D%5E%7B1%7D%7D%2B%7B%7B%5Cdelta+%7D%5E%7B%5Cmu+%7D%7D_%7B2%7D%7B%7Bv%7D%5E%7B2%7D%7D%3D%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%5C%5D), 因为 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cmu+%5C%5D) 不等于 ![](https://www.zhihu.com/equation?tex=1) 就得等于 ![](https://www.zhihu.com/equation?tex=2), 等于几就保留第几项.
+
+✦ 顺带一提的是, 以前的 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cdelta+%7D_%7Bij%7D%7D%5C%5D) 怎么办? 它又不是 (0,2) 型张量的分量, 它就是个数, 该怎么写?
+
+> 这里我建议对齐写 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D_%7B%5Cmu+%7D%7D%7B%7Be%7D%5E%7B%5Cnu+%7D%7D%3D%5Cfrac%7B%5Cpartial+%7B%7Be%7D%5E%7B%5Cnu+%7D%7D%7D%7B%5Cpartial+%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7D%3D%5Cdelta+_%7B%5Cnu+%7D%5E%7B%5Cmu+%7D%5C%5D), 这样你判断不出是什么张量他就是个数了.
+
+**2.7. 矩阵求迹与张量的缩并运算:**
+
+✦ 比如说一个 (2,1) 型张量 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D%7B%7B_%7B%5Cnu+%7D%7D%5E%7B%5Crho+%7D%7D%3D%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Crho+%7D%7D%5C%5D).
+
+> 我们可以看出来 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D%7B%7B_%7B%5Cnu+%7D%7D%5E%7B%5Crho+%7D%7D%5C%5D) 是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bu%7D%5E%7B%5Crho+%7D%7D%5C%5D) 通过张量积合成的 (2,1) 型张量.  
+> ┣ 当我们将其中上指标其中之一与下指标重复, 就发生了张量缩并.  
+> ┗ 即 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D%7B%7B_%7B%5Cnu+%7D%7D%5E%7B%5Crho+%7D%7D%5Cto+%7B%7BA%7D%5E%7B%5Cmu+%7D%7D%7B%7B_%7B%5Cnu+%7D%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7B%7Bu%7D%27%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D%7B%7B_%7B%5Cnu+%7D%7D%5E%7B%5Crho+%7D%7D%5C%5D) 从 (2,1) 型缩并到 (1,0) 型的例子.
+
+✦ 顺带一提 (1,1) 型张量再缩并就是方阵求迹运算:
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cmu+%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Cdelta+%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%3D%5Csum%5Climits_%7B%5Cmu+%2C%5Cnu+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Cdelta+%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%7D%3D%5Csum%5Climits_%7B%5Cmu+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cmu+%7D%7D%3D%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D%2B%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D%3D%5Ctext%7Btr%7DM%5C%5D).  
+> ┣ 这里专门引入一个 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cdelta+%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%5C%5D) 只是提醒一下公式可能还有其他可能性.  
+> ┣ 比如说系统里有互逆的方阵满足 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Crho+%7D%3D%7B%7B%5Cdelta+%7D%5E%7B%5Cmu+%7D%7D_%7B%5Crho+%7D%5C%5D) 那还可以进一步写为下面  
+> ┗ ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cmu+%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Cdelta+%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7BA%7D%5E%7B%5Cnu+%7D%7D_%7B%5Crho+%7D%7B%7BB%7D%5E%7B%5Crho+%7D%7D_%7B%5Cmu+%7D%3D%5Ctext%7Btr%7DM%5C%5D) 这种形式也是合法的.
+
+3. Conclusion
+-------------
+
+终于, 我们可以愉快地使用这个新玩具了, 你已经完全清楚他的构造了, 我全都证明了不是吗?
+
+> 拿这个玩具, 心里踏踏实实地去算几个矩阵你就知道什么叫做爽了.
+
+**3.1. 玩法总结:**
+
+(0). 请务必按照 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cmu+%2C%5Cnu+%2C%5Crho+%2C%5Csigma+%2C%5Ctau+%5C%5D) 的顺序使用指标.
+
+> 用完了呢? 这也能用完吗 (悲), 那后面的你就随便吧, 但我建议是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ceta+%2C%5Cdelta+%2C%5Cvarepsilon+%2C%5Clambda+%5C%5D).  
+> ┗ 这样有啥好处呢? 没啥好处, 就是跟我统一了, 你用我的东西, 跟我统一, 不过分吧.
+
+(1). 取了一组标准正交基 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D%5E%7B1%7D%7D%2C%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%5C%7D%5C%5D) 内积运算将诱导出对偶基 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D_%7B1%7D%7D%2C%7B%7Be%7D_%7B2%7D%7D+%5Cright%5C%7D%5C%5D), 满足 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D_%7Bi%7D%7D%7B%7Be%7D%5E%7Bj%7D%7D%3D%5Cdelta+_%7Bj%7D%5E%7Bi%7D%5C%5D).
+
+(2). 翻译成矩阵后基底们表现为 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B1%7D%7D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++1++%5C%5C++++0++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%2C%7B%7Be%7D%5E%7B2%7D%7D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++0++%5C%5C++++1++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%2C%7B%7Be%7D_%7B1%7D%7D%3D%5Cleft%5B+1%2C0+%5Cright%5D%2C%7B%7Be%7D_%7B2%7D%7D%3D%5Cleft%5B+0%2C1+%5Cright%5D%5C%5D).
+
+(3). 分量表示张量, 即分别用 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%2C%7B%7Bv%7D_%7B%5Cmu+%7D%7D%2C%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D)来表示 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7Bv%7D%5E%7B1%7D%7D++%5C%5C++++%7B%7Bv%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D), ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%7B%7Bv%7D_%7B1%7D%7D%2C%7B%7Bv%7D_%7B2%7D%7D+%5Cright%5D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B1%7D%7D_%7B2%7D++%5C%5C++++%7B%7BM%7D%5E%7B2%7D%7D_%7B1%7D+%26+%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D).
+
+(4). 重复的指标会缩并, 或者全范围求和, 比如说 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Cmu+%7D%7D%7B%7Bu%7D%5E%7B%5Cmu+%7D%7D%3D%7B%7Bv%7D_%7B1%7D%7D%7B%7Bu%7D%5E%7B1%7D%7D%2B%7B%7Bv%7D_%7B2%7D%7D%7B%7Bu%7D%5E%7B2%7D%7D%5C%5D).
+
+> 重复的指标可以随便换符号: ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Crho+%7D%7B%7Bu%7D%5E%7B%5Crho+%7D%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Csigma+%7D%7B%7Bu%7D%5E%7B%5Csigma+%7D%7D%5C%5D).  
+> ┗ 但不要换成本项中已有的指标, 即 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D%5Cne+%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cmu+%7D%7B%7Bu%7D%5E%7B%5Cmu+%7D%7D%5C%5D), 这属于欠揍行为.
+
+(5). 那我怎么知道你这个是分量运算的式子还是张量运算的式子呢?
+
+> 即是分量运算的式子又是张量运算的式子.  
+> ┣ 打个比方这就是在用数列的通项表示数列本身,  
+> ┗ 通项看作是数列本身与看作是数列中的其中一项有什么冲突吗?
+
+(6). 不重复的指标是张量积, 构成高阶张量比如说 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bu%7D_%7B%5Crho+%7D%7D%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%7B%7Bw%7D%5E%7B%5Cnu+%7D%7D%5C%5D) 可以看作是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D_%7B%5Crho+%7D%7D%5E%7B%5Cmu+%5Cnu+%7D%5C%5D).
+
+(7). 张量缩并会退化, 比如说 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Ba%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7Bb%7D%5E%7B%5Cmu+%7D%7D%5C%5D), 你可以说是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D) 从 (1,1) 型退化到 (1,0) 型了.
+
+> 矩阵的角度也好理解, 就是矩阵作用在列矩阵上得到一个列矩阵呗.  
+> ┗ 这种也一样: ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5E%7B%5Cnu+%7D%7D_%7B%5Crho+%7D%7D%7B%7Bu%7D%5E%7B%5Crho+%7D%7D%3D%7B%7B%7BT%7D%27%7D%5E%7B%5Cmu+%5Cnu+%7D%7D%5C%5D) 但是你不好矩阵解释了, 这是从 (2,1) 型退化到 (2,0) 型.
+
+(8). 张量就自己一个人偶尔也可以瞎缩并, 比如说一个 (2,1) 型张量 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D%7B%7B_%7B%5Cnu+%7D%7D%5E%7B%5Crho+%7D%7D%3D%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Crho+%7D%7D%5C%5D).
+
+> 我们可以看出来 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D%7B%7B_%7B%5Cnu+%7D%7D%5E%7B%5Crho+%7D%7D%5C%5D) 是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bu%7D%5E%7B%5Crho+%7D%7D%5C%5D) 通过张量积合成的 (2,1) 型张量.  
+> ┣ 当我们将上指标其中之一与下指标重复, 就发生了张量缩并.  
+> ┗ 如 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D%7B%7B_%7B%5Cnu+%7D%7D%5E%7B%5Crho+%7D%7D%5Cto+%7B%7BA%7D%5E%7B%5Cmu+%7D%7D%7B%7B_%7B%5Cnu+%7D%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bu%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7B%7Bu%7D%27%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D%7B%7B_%7B%5Cnu+%7D%7D%5E%7B%5Crho+%7D%7D%5C%5D) 从 (2,1) 型缩并到 (1,0) 型的例子.  
+> 顺带一提 (1,1) 型张量再缩并就是方阵求迹运算:  
+> ┣ ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cmu+%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Cdelta+%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%3D%5Csum%5Climits_%7B%5Cmu+%2C%5Cnu+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Cdelta+%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%7D%3D%5Csum%5Climits_%7B%5Cmu+%7D%7B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cmu+%7D%7D%3D%7B%7BM%7D%5E%7B1%7D%7D_%7B1%7D%2B%7B%7BM%7D%5E%7B2%7D%7D_%7B2%7D%3D%5Ctext%7Btr%7DM%5C%5D).  
+> ┣ 这里专门引入一个 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cdelta+%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%5C%5D) 只是提醒一下公式可能还有其他可能性.  
+> ┣ 比如说系统里有互逆的方阵满足 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Crho+%7D%3D%7B%7B%5Cdelta+%7D%5E%7B%5Cmu+%7D%7D_%7B%5Crho+%7D%5C%5D) 那还可以进一步写为下面  
+> ┗ ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cmu+%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Cdelta+%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7BA%7D%5E%7B%5Cnu+%7D%7D_%7B%5Crho+%7D%7B%7BB%7D%5E%7B%5Crho+%7D%7D_%7B%5Cmu+%7D%5C%5D) 这种形式也是合法的.
+
+(9). 你可以通过观察缩并后的等式两边指标是否平衡来检查是否有书写错误.
+
+> 比如说 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%5Cnu+%7D%7D%7B%7BB%7D_%7B%5Crho+%5Csigma+%7D%7D%5E%7B%5Ctau+%7D%7B%7Bv%7D_%7B%5Ctau+%7D%7D%7B%7Bu%7D%5E%7B%5Csigma+%7D%7D%3D%7B%7BT%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%7D%5C%5D) 就是准确无误的.
+
+(10). ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%2C%7B%7Bv%7D%5E%7B%5Cnu+%7D%7D%5C%5D) 都表示同一个矢量, ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%5Crho+%7D%2C%7B%7BT%7D%5E%7B%5Csigma+%7D%7D_%7B%5Ctau+%5Cmu+%7D%5C%5D) 表示同一个张量, 重要的只是重复了的指标.
+
+> 但你不要出现 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%3D%7B%7Bv%7D%5E%7B%5Cnu+%7D%7D%5C%5D) 这种式子, 这对我们将来检查指标平衡很不利,  
+> ┣ 同理 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%2B%7B%7Bu%7D%5E%7B%5Cmu+%7D%7D%3D%7B%7Bw%7D%5E%7B%5Cnu+%7D%7D%5C%5D) 这种式子就是有毒的, 你必须写成 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%2B%7B%7Bu%7D%5E%7B%5Cmu+%7D%7D%3D%7B%7Bw%7D%5E%7B%5Cmu+%7D%7D%5C%5D).  
+> ┗ 总之就是虽然你分开写 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bw%7D%5E%7B%5Cnu+%7D%7D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bw%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 是一回事, 但在等式中要保证指标平衡.
+
+(11). 这个记号下各个张量的分量可以随便调换位置, 因为反正指标缩并已经指出作用模式了,
+
+> **只 要 当 作 分 量 计 算 即 可 (因为本来就是分量运算, 详见 2.2)**  
+> ┗ 比如 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%5Cnu+%7D%7D%7B%7BB%7D_%7B%5Crho+%5Csigma+%7D%7D%5E%7B%5Ctau+%7D%7B%7Bv%7D_%7B%5Ctau+%7D%7D%7B%7Bu%7D%5E%7B%5Csigma+%7D%7D%3D%7B%7Bv%7D_%7B%5Ctau+%7D%7D%7B%7BA%7D%5E%7B%5Cmu+%5Cnu+%7D%7D%7B%7Bu%7D%5E%7B%5Csigma+%7D%7D%7B%7BB%7D_%7B%5Crho+%5Csigma+%7D%7D%5E%7B%5Ctau+%7D%5C%5D) 或者 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%7B%7Bv%7D_%7B%5Cmu+%7D%7D%3D%7B%7Bv%7D_%7B%5Cmu+%7D%7D%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 或者 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%3D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%5C%5D).
+
+(12). 观察一个式子的时候心里可以灵活点儿, 不要很死板的就一定看作是张量运算.
+
+> 实际上写的确实都是分量不是吗?  
+> ┣ 在分析的时候要知道一点, 比如说 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D%5E%7B%5Cmu+%5Cnu+%7D%7D_%7B%5Crho+%5Csigma+%7D%5C%5D) 确实是 (2,2) 型张量的分量,  
+> ┗ 但我在心里把 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cmu+%2C%5Crho+%5C%5D) 固定的话其实也可以看作是一个矩阵, 这个很难讲清楚, 多算多感悟吧.
+
+(13). 这是下面两节的总结, 为了方便查阅放在这里, 具体解释见下面两节.
+
+> ①. 矩阵翻译要上下重复指标相连 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cbegin%7Balign%7D+++%26+%7B%7Ba%7D%5E%7B%5Cmu+%7D%7D%7B%7BM%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%7B%7Bc%7D_%7B%5Cnu+%7D%7D%3D%7B%7Bc%7D_%7B%5Cnu+%7D%7D%7B%7BM%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%7B%7Ba%7D%5E%7B%5Cmu+%7D%7D%5Cto+cMa%5Cne+aMc+%5C%5C+++%26+%7B%7By%7D_%7B%5Cmu+%7D%7D%7B%7B%5CLambda+%7D_%7B%5Cnu+%7D%7D%5E%7B%5Cmu+%7D%7B%7Bx%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7By%7D_%7B%5Cmu+%7D%7D%7B%7B%5Cleft%28+%7B%7B%5CLambda+%7D%5E%7B%5Ctext%7BT%7D%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bx%7D%5E%7B%5Cnu+%7D%7D%5Cto+y%7B%7B%5CLambda+%7D%5E%7B%5Ctext%7BT%7D%7D%7Dx%5Cne+y%5CLambda+x+%5C%5C++%5Cend%7Balign%7D+%5Cright.%5C%5D)  
+> ②. 转置 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%3D%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%5Ctext%7BT%7D%7D%7D+%5Cright%29%7D_%7B%5Cnu+%7D%7D%5E%7B%5Cmu+%7D%5C%5D), 共轭 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%3D%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%2A%7D%7D+%5Cright%29%7D_%7B%5Cmu+%7D%7D%5E%7B%5Cnu+%7D%5C%5D), 厄米共轭 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%3D%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%5Cdagger+%7D%7D+%5Cright%29%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%5C%5D).
+
+(14). 乘积的 trace 可以拆开成矩阵的乘积:
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ctext%7Btr%7D%5Cleft%28+AB+%5Cright%29%5Cto+%7B%7B%5Cleft%28+AB+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cmu+%7D%3D%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%5C%5D) 你感觉靠谱吗?  
+> ┗ 当然靠谱鸭, ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7BB%7D%5E%7B%5Cnu+%7D%7D_%7B%5Crho+%7D%3D%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Crho+%7D%5C%5D) 总是能认同的吧? 那其实 ![](https://www.zhihu.com/equation?tex=%5C%5BT%5C%5D) 不就是 ![](https://www.zhihu.com/equation?tex=AB) 吗?
+
+**3.2. 矩阵翻译顺序与转置关系:**
+
+其实很多人或许接触不到太多张量, 基本上就是矩阵运算, 所以会很看重矩阵的翻译.
+
+✦ 从分量求和约定翻译到矩阵的关键就是 **首 尾 相 连** 四个大字:
+
+因为我们分量运算是可以调换位置的, 但矩阵并不可以啊, 所以翻译的时候位置很关键.
+
+> 比如说 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cbeta+%7D%5E%7B%5Cnu+%7D%7D%7B%7B%5CLambda+%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Calpha+%7D_%7B%5Cmu+%7D%7D%5C%5D) 矩阵乘法怎么写? 你先要求和指标首尾相连: ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D_%7B%5Cmu+%7D%7D%7B%7B%5CLambda+%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Cbeta+%7D%5E%7B%5Cnu+%7D%7D%5C%5D).  
+> ┣ 然后再翻译到传统的矩阵表达: ![](https://www.zhihu.com/equation?tex=%5C%5B%5Calpha+%5CLambda+%5Cbeta+%5C%5D) ,  
+> ┣ 可千万不能是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cbeta+%5CLambda+%5Calpha+%5C%5D) 啊, 矩阵左乘列向量右乘行? 什么玩意?  
+> ┣ 这还是简单的, 复杂一点儿这个规律就显得很重要了, 比如说:  
+> ┗ ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5CLambda+%7D%5E%7B%5Crho+%7D%7D_%7B%5Csigma+%7D%7B%7BM%7D%5E%7B%5Ctau+%7D%7D_%7B%5Ceta+%7D%7B%7B%5Calpha+%7D%5E%7B%5Csigma+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Ctau+%7D%7D%7B%7B%5Cgamma+%7D%5E%7B%5Ceta+%7D%7D%7B%7Bv%7D_%7B%5Cmu+%7D%7D%7B%7Bw%7D%5E%7B%5Cnu+%7D%7D%7B%7Bu%7D_%7B%5Crho+%7D%7D%5Cto+vTwu%5CLambda+%5Calpha+%5Cbeta+M%5Cgamma+%5C%5D)[[7]](#ref_7).
+
+✦ 转置:
+
+前面我们清清楚楚地说明了顺序不重要, 即 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%3D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%5C%5D),
+
+但写成矩阵分别是: ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7B%5Calpha+%7D%5E%7B1%7D%7D%7B%7B%5Cbeta+%7D_%7B1%7D%7D+%26+%7B%7B%5Calpha+%7D%5E%7B1%7D%7D%7B%7B%5Cbeta+%7D_%7B2%7D%7D++%5C%5C++++%7B%7B%5Calpha+%7D%5E%7B2%7D%7D%7B%7B%5Cbeta+%7D_%7B1%7D%7D+%26+%7B%7B%5Calpha+%7D%5E%7B2%7D%7D%7B%7B%5Cbeta+%7D_%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++%7B%7B%5Cbeta+%7D_%7B1%7D%7D%7B%7B%5Calpha+%7D%5E%7B1%7D%7D+%26+%7B%7B%5Cbeta+%7D_%7B1%7D%7D%7B%7B%5Calpha+%7D%5E%7B2%7D%7D++%5C%5C++++%7B%7B%5Cbeta+%7D_%7B2%7D%7D%7B%7B%5Calpha+%7D%5E%7B1%7D%7D+%26+%7B%7B%5Cbeta+%7D_%7B2%7D%7D%7B%7B%5Calpha+%7D%5E%7B2%7D%7D++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D).
+
+> 常威! 怎么差了一个转置你还说顺序不重要???  
+> ┣ 冤枉啊大人, 我们这套记号系统本身运算不会出问题的,  
+> ┣ 比如说你希望 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 作用于 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bx%7D_%7B%5Cmu+%7D%7D%5C%5D), ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cbeta+%7D_%7B%5Cmu+%7D%7D%5C%5D)作用于 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7By%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 那尽管写成 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%7B%7By%7D%5E%7B%5Cnu+%7D%7D%7B%7Bx%7D_%7B%5Cmu+%7D%7D%5C%5D) 就行了.  
+> ┣ 你写成 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7Bx%7D_%7B%5Cmu+%7D%7D%7B%7By%7D%5E%7B%5Cnu+%7D%7D%5C%5D) 也是一个道理的呀, 因为最终都是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7Bx%7D_%7B%5Cmu+%7D%7D+%5Cright%29%5Cleft%28+%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%7B%7By%7D%5E%7B%5Cnu+%7D%7D+%5Cright%29%3Dc%5Cin+%5Cmathbb%7BC%7D%5C%5D).  
+> ┣ 你 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 差个转置, 但 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7By%7D%5E%7B%5Cnu+%7D%7D%7B%7Bx%7D_%7B%5Cmu+%7D%7D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bx%7D_%7B%5Cmu+%7D%7D%7B%7By%7D%5E%7B%5Cnu+%7D%7D%5C%5D) 又何尝不是呢?  
+> ┣ 所以 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%7B%7By%7D%5E%7B%5Cnu+%7D%7D%7B%7Bx%7D_%7B%5Cmu+%7D%7D%3D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7Bx%7D_%7B%5Cmu+%7D%7D%7B%7By%7D%5E%7B%5Cnu+%7D%7D%5C%5D) 本质上就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D+%5Cright%29%5Cleft%28+%7B%7By%7D%5E%7B%5Cnu+%7D%7D%7B%7Bx%7D_%7B%5Cmu+%7D%7D+%5Cright%29%3D%5Cleft%28+%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D+%5Cright%29%5Cleft%28+%7B%7Bx%7D_%7B%5Cmu+%7D%7D%7B%7By%7D%5E%7B%5Cnu+%7D%7D+%5Cright%29%5C%5D).  
+> ┗ 进一步说明就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ctext%7Btr%7D%5Cleft%28+AB+%5Cright%29%3D%5Ctext%7Btr%7D%5Cleft%28+%7B%7BB%7D%5E%7B%5Ctext%7BT%7D%7D%7D%7B%7BA%7D%5E%7B%5Ctext%7BT%7D%7D%7D+%5Cright%29%5C%5D), 为啥求迹? 因为缩并了呀.
+
+所以从上面我们又引申出一个话题: ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D_%7B%5Cnu+%7D%7D%5E%7B%5Cmu+%7D%5C%5D) 实际上差一个转置.
+
+> 因为前面的 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%2C%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 其实可以分别看作是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%2C%7B%7BT%7D_%7B%5Cnu+%7D%7D%5E%7B%5Cmu+%7D%5C%5D).  
+> ┣ 所以我就说 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D_%7B%5Cnu+%7D%7D%5E%7B%5Cmu+%7D%5C%5D) 实际上差一个转置.  
+> ┣ 但你要是比较较真的话, 可能会问, 难道所有的矩阵都可以改写为 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Ba%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%5C%5D) 的形式吗?  
+> ┣ 其实不能, 比如说单位阵就不能:  
+> ┣ 式子 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++a++%5C%5C++++b++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5Cleft%5B+c%2Cd+%5Cright%5D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++ac+%26+ad++%5C%5C++++bc+%26+bd++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++1+%26+0++%5C%5C++++0+%26+1++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D), 无解对吧?  
+> ┗ 那我这也不是张口就来, 分解不成 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%5C%5D) 但总可以分解成 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%2B%7B%7B%5Cgamma+%7D%5E%7B%5Crho+%7D%7D%7B%7B%5Cvarphi+%7D_%7B%5Csigma+%7D%7D%2B%5Ccdots+%5C%5D) 嘛.
+
+所以 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%3D%7B%7BM%7D_%7B%5Cnu+%7D%7D%5E%7B%5Cmu+%7D%5C%5D) 可不能瞎写, 这说明啥? 这说明 ![](https://www.zhihu.com/equation?tex=M) 是个对称矩阵.
+
+> 但是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BM%7D_%7B%5Cnu+%7D%7D%5E%7B%5Cmu+%7D%3D%7B%7B%5Cleft%28+%7B%7BM%7D%5E%7B%5Ctext%7BT%7D%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%5C%5D) 是对所有矩阵都成立的, 两次转置等于不变嘛.
+
+于是我们的翻译又要多一条规则, 为了首尾相连, 可能要取转置:
+
+> 例 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7By%7D_%7B%5Cmu+%7D%7D%7B%7B%5CLambda+%7D_%7B%5Cnu+%7D%7D%5E%7B%5Cmu+%7D%7B%7Bx%7D%5E%7B%5Cnu+%7D%7D%3D%7B%7By%7D_%7B%5Cmu+%7D%7D%7B%7B%5Cleft%28+%7B%7B%5CLambda+%7D%5E%7B%5Ctext%7BT%7D%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7Bx%7D%5E%7B%5Cnu+%7D%7D%5Cto+y%7B%7B%5CLambda+%7D%5E%7B%5Ctext%7BT%7D%7D%7Dx%5Cne+y%5CLambda+x%5C%5D).
+
+现在你知道为啥我们的指标要错开了吗? 要不然怎么表达两类 (1,1) 型张量的转置关系?
+
+**3.3. 厄米共轭与符号设计的初衷:**
+
+前面研究 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cbeta+%7D_%7B%5Cnu+%7D%7D%7B%7B%5Calpha+%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 的形式我们知道 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%3D%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%5Ctext%7BT%7D%7D%7D+%5Cright%29%7D_%7B%5Cnu+%7D%7D%5E%7B%5Cmu+%7D%5C%5D) , 即二者差一个转置.
+
+但这并不是重点, 在复内积空间内转置其实很少被提及, 一般都是进行厄米共轭来找对偶形式, 转置只是一个半吊子操作罢了.
+
+你可以考察一下 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Ba%7D%5E%7B%5Cmu+%7D%7D%7B%7Bb%7D_%7B%5Cnu+%7D%7D%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Ba%7D_%7B%5Cmu+%7D%7D%7B%7Bb%7D%5E%7B%5Cnu+%7D%7D%5C%5D) 的矩阵区别, 显然二者差一个共轭, 即 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%3D%7B%7B%5Cleft%28+%7B%7BA%7D_%7B%5Cmu+%7D%7D%5E%7B%5Cnu+%7D+%5Cright%29%7D%5E%7B%2A%7D%7D%5C%5D).
+
+所以很显然地, 所谓厄米共轭实际上就是转置后取共轭:
+
+即 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%5Cdagger+%7D%7D+%5Cright%29%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%3D%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%5Ctext%7BT%7D%7D%7D+%5Cright%29%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%3D%7B%7B%5Cleft%5B+%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%5Ctext%7BT%7D%7D%7D+%5Cright%29%7D_%7B%5Cnu+%7D%7D%5E%7B%5Cmu+%7D+%5Cright%5D%7D%5E%7B%2A%7D%7D%3D%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D+%5Cright%29%7D%5E%7B%2A%7D%7D%5C%5D).
+
+能把这三个操作拆的这么细致也某种意义上说明了我这个符号比狄拉克符号操作空间更大.
+
+而这个操作空间就体现在我们的指标不仅分上下还分左右, 这也就是为什么我要这样设计这个符号, 这样我们就可以把转置和共轭拆开, 这样就可以用同一套符号同时兼容量子力学与相对论的运算.
+
+但是怎么理解 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D+%5Cright%29%7D%5E%7B%2A%7D%7D%3D%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%5Cdagger+%7D%7D+%5Cright%29%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%5C%5D) 呢? 下面做个量子力学计算示范:
+
+> 量子力学里我们知道有伴随关系 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%7C+%5Cpsi++%5Cright%5Crangle+%3DM%5Cleft%7C+%5Cvarphi++%5Cright%5Crangle+%5CLeftrightarrow+%5Cleft%5Clangle++%5Cpsi++%5Cright%7C%3D%5Cleft%5Clangle++%5Cvarphi++%5Cright%7C%7B%7BM%7D%5E%7B%5Cdagger+%7D%7D%5C%5D).  
+> ┣ 在指标运算中就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cpsi+%7D%5E%7B%5Cmu+%7D%7D%3D%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Cvarphi+%7D%5E%7B%5Cnu+%7D%7D%5CLeftrightarrow+%7B%7B%5Cpsi+%7D_%7B%5Cmu+%7D%7D%3D%7B%7B%5Cleft%28+%7B%7BM%7D%5E%7B%5Cdagger+%7D%7D+%5Cright%29%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%7B%7B%5Cvarphi+%7D_%7B%5Cnu+%7D%7D%5C%5D).  
+> ┣ 其中 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cpsi+%7D_%7B%5Cmu+%7D%7D%5Cequiv+%7B%7B%5Cleft%28+%7B%7B%5Cpsi+%7D%5E%7B%5Cdagger+%7D%7D+%5Cright%29%7D_%7B%5Cmu+%7D%7D%3D%7B%7B%5Cleft%28+%7B%7B%5Cpsi+%7D%5E%7B%5Cmu+%7D%7D+%5Cright%29%7D%5E%7B%2A%7D%7D%2C%5C+%7B%7B%5Cleft%28+%7B%7BM%7D%5E%7B%5Cdagger+%7D%7D+%5Cright%29%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%3D%7B%7B%5Cleft%28+%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D+%5Cright%29%7D%5E%7B%2A%7D%7D%5C%5D).  
+> ┗ 即 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7BM%7D%5E%7B%5Cdagger+%7D%7D+%5Cright%29%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%7B%7B%5Cvarphi+%7D_%7B%5Cnu+%7D%7D%3D%7B%7B%5Cleft%28+%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D+%5Cright%29%7D%5E%7B%2A%7D%7D%7B%7B%5Cleft%28+%7B%7B%5Cvarphi+%7D%5E%7B%5Cnu+%7D%7D+%5Cright%29%7D%5E%7B%2A%7D%7D%3D%7B%7B%5Cleft%28+%7B%7BM%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%7B%7B%5Cvarphi+%7D%5E%7B%5Cnu+%7D%7D+%5Cright%29%7D%5E%7B%2A%7D%7D%3D%7B%7B%5Cleft%28+%7B%7B%5Cpsi+%7D%5E%7B%5Cmu+%7D%7D+%5Cright%29%7D%5E%7B%2A%7D%7D%3D%7B%7B%5Cpsi+%7D_%7B%5Cmu+%7D%7D%5C%5D).
+
+实际上这段可能比较难懂, 感兴趣的话建议看看 **[[此文](https://zhuanlan.zhihu.com/p/359082678)]** 的第四章.
+
+**3.4. 后日谈:**
+
+(1). 也没啥想说的, 这篇文章构建的还算耗精力, 不难但蛮累的.
+
+(2). 我作业还没写完, 我是说上周的作业都 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ccdots+%5C%5D) 不知道, 我就是不想写.
+
+(3). 你现在想想有些人把矩阵写成 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cnu+%7D%5E%7B%5Cmu+%7D%5C%5D), 那我问你怎么区分行列呢?
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7By%7D_%7B%5Cmu+%7D%7D%5CLambda+_%7B%5Cnu+%7D%5E%7B%5Cmu+%7D%7B%7Bx%7D%5E%7B%5Cnu+%7D%7D%3Dy%5CLambda+x%3Dy%7B%7B%5CLambda+%7D%5E%7B%5Ctext%7BT%7D%7D%7Dx%3Dx%5CLambda+y%3Dx%7B%7B%5CLambda+%7D%5E%7B%5Ctext%7BT%7D%7D%7Dy%5C%5D)? 黑人问号. jpg  
+> ┗ 约定上行下列? 那为何矩阵的上是行向量的上却代表列呢? 还有就是对偶空间怎么表示?
+
+(4). 你现在想想有些人把矩阵写成 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D_%7B%5Cmu+%5Cnu+%7D%7D%5C%5D), 这 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ccdots+%5C%5D) 难道永远活在实空间矩阵运算的时代吗?
+
+(5). 和我们系统目前为止最不兼容的是 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bg%7D_%7B%5Cmu+%5Cnu+%7D%7D%3D%5Cleft%5B+%5Cbegin%7Bmatrix%7D++++1+%26+0+%26+0+%26+0++%5C%5C++++0+%26+-1+%26+0+%26+0++%5C%5C++++0+%26+0+%26+-1+%26+0++%5C%5C++++0+%26+0+%26+0+%26+-1++%5C%5C+%5Cend%7Bmatrix%7D+%5Cright%5D%5C%5D).
+
+> 这是 (0,2) 型张量你怎么给写成矩阵了.  
+> ┗ 以前说是懂得都懂, 现在不用了, 我在进阶的 [[DLC]](https://zhuanlan.zhihu.com/p/339120822) 中兼容了这个问题:
+
+(6). 受到 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%3D%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%5Ctext%7BT%7D%7D%7D+%5Cright%29%7D_%7B%5Cnu+%7D%7D%5E%7B%5Cmu+%7D%5C%5D), ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D%3D%7B%7B%5Cleft%28+%7B%7BA%7D_%7B%5Cmu+%7D%7D%5E%7B%5Cnu+%7D+%5Cright%29%7D%5E%7B%2A%7D%7D%5C%5D), ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%5Cmu+%7D%7D_%7B%5Cnu+%7D+%5Cright%29%7D%5E%7B%2A%7D%7D%3D%7B%7B%5Cleft%28+%7B%7BA%7D%5E%7B%5Cdagger+%7D%7D+%5Cright%29%7D%5E%7B%5Cnu+%7D%7D_%7B%5Cmu+%7D%5C%5D) 的启发:
+
+> 可能会有人心想, 既然这套符号系统如此灵活,  
+> ┣ 其实也没必要将矢量空间对应列空间, 对偶矢量空间对应行空间吧?  
+> ┣ 我约定指标的上下控制共轭, 左右控制转置岂不是更好? 岂不是自由度更大?  
+> ┣ 但这个规定能与量子力学里面的计算思路完全一致.  
+> ┗ **于是我暴力约定了对偶矢量对应行矩阵, 矢量对应列矩阵.**  
+> 但如果你真的这么想了, 这就说明你直觉很好或者你已经是个懂哥了.  
+> ┗ 事实上在进阶的 [[DLC]](https://zhuanlan.zhihu.com/p/339120822) 操作中我们真的取消了这个规定.
+
+(7). 关于用于区分不同矢量的非分量指标也写在上面是否是必要的:
+
+> 就是说矢量 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 中的 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Calpha+%5C%5D) 是否一定要写作上标, 答案是否定的.  
+> ┣ 实际上你确实可以写为 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B%5Cmu+%7D%7D%5C%5D), 而对偶矢量也同样还可以写作 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cleft%28+%7B%7Bw%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D_%7B%5Cmu+%7D%7D%5C%5D).  
+> ┣ 我们的求和约定只要求了分量指标 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cmu+%5C%5D) 的上下位置.  
+> ┣ 所以说矢量空间的基矢完全可以写为 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D_%7B1%7D%7D%2C%7B%7Be%7D_%7B2%7D%7D+%5Cright%5C%7D%5C%5D) 而不必要写作 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D%5E%7B1%7D%7D%2C%7B%7Be%7D%5E%7B2%7D%7D+%5Cright%5C%7D%5C%5D).  
+> ┣ 但这样你对偶矢量空间的基矢就要换个符号了, 比如说 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Bw%7D_%7B1%7D%7D%2C%7B%7Bw%7D_%7B2%7D%7D+%5Cright%5C%7D%5C%5D) 之类的.  
+> ┣ 但这样说实话不看上下文很容易弄混对偶矢量与矢量,  
+> ┣ 所以我才强行约定矢量的非分量指标要写上边儿.  
+> ┣ 其实一般来说矢量和对偶矢量的分量指标已经起到区分矢量与对偶矢量的效果了.  
+> ┣ 所以实际上, 好像也只有基矢才需要出现非分量指标吧,  
+> ┗ 所以我这么约定是问题不大的, 这里就是强调一下这并不是必要的.
+
+4. 把基矢也加入求和约定?
+--------------
+
+就在我们的系统里面已经表达的很清楚了, 有一个矢量空间 ![](https://www.zhihu.com/equation?tex=V), 里面的元素都是矢量.
+
+> 而我们在空间中选择了一组基矢比如说 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D%5E%7B1%7D%7D%2C%7B%7Be%7D%5E%7B2%7D%7D%2C%7B%7Be%7D%5E%7B3%7D%7D+%5Cright%5C%7D%5C%5D).  
+> ┗ 这样任何一个矢量 ![](https://www.zhihu.com/equation?tex=%5C%5Bv%5Cin+V%5C%5D) 都可以表达为基矢的线性组合即 ![](https://www.zhihu.com/equation?tex=%5C%5Bv%3D%5Csum%5Climits_%7B%5Cmu+%3D1%7D%5E%7B3%7D%7B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%7D%5C%5D).
+
+然后还有一个对偶矢量空间 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D), 里面的元素都是对偶矢量.
+
+> 根据前面选择的矢量空间的基矢, 自然会定好对偶空间的对偶基矢 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D_%7B1%7D%7D%2C%7B%7Be%7D_%7B2%7D%7D%2C%7B%7Be%7D_%7B3%7D%7D+%5Cright%5C%7D%5C%5D).  
+> ┗ 这样任何一个对偶矢量 ![](https://www.zhihu.com/equation?tex=%5C%5Bw%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D) 都可以表达为对偶基矢的线性组合 ![](https://www.zhihu.com/equation?tex=%5C%5Bw%3D%5Csum%5Climits_%7B%5Cmu+%3D1%7D%5E%7B3%7D%7B%7B%7Bw%7D_%7B%5Cmu+%7D%7D%7B%7Be%7D_%7B%5Cmu+%7D%7D%7D%5C%5D).
+
+接着我们有一个缩并的求和约定, 规定 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%7B%7Bw%7D_%7B%5Cmu+%7D%7D%3D%5Csum%5Climits_%7B%5Cmu+%3D1%7D%5E%7B3%7D%7B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%7B%7Bw%7D_%7B%5Cmu+%7D%7D%7D%5C%5D), 为我们减少了很多负担.
+
+那么很自然地, 一定会有人想问这样一个问题:
+
+> 能不能把基矢记为 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D_%7B1%7D%7D%2C%7B%7Be%7D_%7B2%7D%7D%2C%7B%7Be%7D_%7B3%7D%7D+%5Cright%5C%7D%5C%5D) 而对偶基矢记成 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%7B%7Be%7D%5E%7B1%7D%7D%2C%7B%7Be%7D%5E%7B2%7D%7D%2C%7B%7Be%7D%5E%7B3%7D%7D+%5Cright%5C%7D%5C%5D)?  
+> ┣ 这样一来任何一个矢量 ![](https://www.zhihu.com/equation?tex=%5C%5Bv%5Cin+V%5C%5D) 岂不是就直接能写成 ![](https://www.zhihu.com/equation?tex=%5C%5Bv%3D%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D_%7B%5Cmu+%7D%7D%5C%5D) 了吗?  
+> ┗ 然后任何一个对偶矢量 ![](https://www.zhihu.com/equation?tex=%5C%5Bw%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D) 也可以直接写为 ![](https://www.zhihu.com/equation?tex=%5C%5Bw%3D%7B%7Bw%7D_%7B%5Cmu+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 了, 这不是超爽?
+
+如果你问我的话, 我会说确实是可以这么做的, 我就经常这么做, 尤其是用泡利算符当基底时.
+
+对初心者而言, 就暂且不推荐把基矢扯进来, 因为大部分计算其实都不会涉及到基矢.
+
+但如果你一定要这么做, 那就要求你脑子里对这个结构有一个清晰的认识了.
+
+你必须很确定哪些是数域上的数, 即 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%2C%7B%7Bw%7D_%7B%5Cmu+%7D%7D%5C%5D) 这些都是数域上的数字.
+
+然后你必须很清楚哪些是矢量, 即基矢与基矢的线性组合.
+
+> 例如前面的 ![](https://www.zhihu.com/equation?tex=%5C%5Bv%3D%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%7B%7Be%7D_%7B%5Cmu+%7D%7D%5C%5D) 中的 ![](https://www.zhihu.com/equation?tex=v) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D_%7B%5Cmu+%7D%7D%5C%5D) 是地位相等的, 它们都是矢量.
+
+最后你必须很清楚哪些是对偶矢量, 即对偶基矢与其线性组合.
+
+> 例如前面的 ![](https://www.zhihu.com/equation?tex=%5C%5Bw%3D%7B%7Bw%7D_%7B%5Cmu+%7D%7D%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 中的 ![](https://www.zhihu.com/equation?tex=w) 与 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%5C%5D) 是地位相等的, 它们都是对偶矢量.
+
+总之, 只要你能保证别把 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%2C%7B%7Bw%7D_%7B%5Cmu+%7D%7D%2C%7B%7Be%7D%5E%7B%5Cmu+%7D%7D%2C%7B%7Be%7D_%7B%5Cmu+%7D%7D%5C%5D) 弄混了的话, 那随你怎么玩都没问题.
+
+> 真上战场的话, 可能记号上就没这么好区分了, 基矢可能是任何东西, 不一定会用字母 ![](https://www.zhihu.com/equation?tex=e).
+
+Anyway, It's up to you.
+-----------------------
+
+哦对了, 就你可能还会这么想:
+
+> 我们给矢量与对偶矢量再添一些特殊符号来将它们与数区分不就好了吗?  
+> ┣ 比如说矢量都都上箭头 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cvec%7Bv%7D%2C%7B%7B%7B%5Cvec%7Be%7D%7D%7D_%7B1%7D%7D%5C%5D), 然后对偶矢量都带下箭头 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cunderset%7B%5Craise0.3em%5Chbox%7B%24%5Csmash%7B%5Cscriptscriptstyle%5Crightarrow%7D%24%7D%7D%7Bv%7D%2C%7B%7B%7B%5Cunderset%7B%5Craise0.3em%5Chbox%7B%24%5Csmash%7B%5Cscriptscriptstyle%5Crightarrow%7D%24%7D%7D%7Be%7D%7D%7D%5E%7B1%7D%7D%5C%5D),  
+> ┣ 然后分量 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D%5E%7B%5Cmu+%7D%7D%2C%7B%7Bw%7D_%7B%5Cmu+%7D%7D%5C%5D) 没箭头之类的, 这样不就能分清楚了吗?  
+> ┣ 那我只能说 naive, 因为后面我们的系统会复杂到经常需要用张量当矢量,  
+> ┣ 然后在这个张量当矢量的矢量空间里面的线性变换又是一个张量,  
+> ┣ 然后这个张量完全也可以作为矢量又构成一层线性空间.  
+> ┣ 那么问题就来了, 究竟谁是矢量? 什么是矢量? 什么是数? 什么又是张量?  
+> ┗ 这就都是相对的了, 完全取决于你的观点了, 所以别太依赖符号, 终究还是脑子要清醒.
+
+**看后面的附录不如直接看这篇新写的, 更系统更详细:**
+
+[東雲正樹：[前置内容] 从映射到线性空间上的张量](https://zhuanlan.zhihu.com/p/356975719)
+
+[附录 A] 映射
+---------
+
+✦ **设集合** ![](https://www.zhihu.com/equation?tex=X%2CY)**, 则可以定义集合间的映射** ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cvarphi+%3AX%5Cto+Y%5C%5D).
+
+> 这个记号的意思是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cvarphi+%5C%5D) 是一个能通过输入一个 ![](https://www.zhihu.com/equation?tex=X) 中的元素来得到一个 ![](https://www.zhihu.com/equation?tex=Y) 中的元素的映射.
+
+映射 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cvarphi+%5C%5D) 要求对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+x%5Cin+X%5C%5D) 在 ![](https://www.zhihu.com/equation?tex=Y) 中有且仅有一个 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cvarphi+%5Cleft%28+x+%5Cright%29%3Dy%5C%5D) 与之对应, 共分为三类:
+
+> (1). 单射: 对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+x%2C%7Bx%7D%27%5Cin+X%5C%5D) 满足 ![](https://www.zhihu.com/equation?tex=%5C%5Bx%5Cne+%7Bx%7D%27%5CRightarrow+%5Cvarphi+%5Cleft%28+x+%5Cright%29%5Cne+%5Cvarphi+%5Cleft%28+%7B%7Bx%7D%27%7D+%5Cright%29%5C%5D).  
+> (2). 满射: 对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+y%5Cin+Y%5C%5D) 一定能找到一个或多个 ![](https://www.zhihu.com/equation?tex=%5C%5Bx%5Cin+X%5C%5D) 满足 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cvarphi+%5Cleft%28+x+%5Cright%29%3Dy%5C%5D).  
+> (3). 双射: 即集合 ![](https://www.zhihu.com/equation?tex=%5C%5BX%2CY%5C%5D) 间存在一个一一对应的关系.
+
+若非满射的话, 值域![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%5C%7B+%5Cvarphi+%5Cleft%28+x+%5Cright%29%7Cx%5Cin+X+%5Cright%5C%7D%5C%5D) 则是 ![](https://www.zhihu.com/equation?tex=Y) 的一个子集, 我们将其记为 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Coperatorname%7BIm%7D%5Cleft%28+%5Cvarphi++%5Cright%29%5C%5D).
+
+> ![](https://www.zhihu.com/equation?tex=%5C%5B%5Coperatorname%7BIm%7D%5C%5D) 是 Image 的缩写, 显然满射可以表达为 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Coperatorname%7BIm%7D%5Cleft%28+%5Cvarphi++%5Cright%29%3DY%5C%5D).
+
+**✦ 单射加满射可以得到双射:**
+
+先引入 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cvarphi+%7D%5E%7B-1%7D%7D%3AY%5Cto+X%5C%5D) 称之为 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cvarphi+%5C%5D) 的逆映射, 其满足关系 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cvarphi+%7D%5E%7B-1%7D%7D%5Cleft%28+%5Cvarphi+%5Cleft%28+x+%5Cright%29+%5Cright%29%3Dx%5C%5D).
+
+> 映射要求 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cvarphi+%5Cleft%28+x+%5Cright%29%5C%5D) 是存在且唯一的, 即映射本身要求不能一对多且 ![](https://www.zhihu.com/equation?tex=X) 全员参与,  
+> ┣ 单射要求 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cvarphi+%7D%5E%7B-1%7D%7D%5Cleft%28+y+%5Cright%29%5C%5D) 是唯一的 (不要求一定存在), 即不能多对一,  
+> ┣ 满射要求 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7B%5Cvarphi+%7D%5E%7B-1%7D%7D%5Cleft%28+h+%5Cright%29%5C%5D) 是一定存在的, 即 ![](https://www.zhihu.com/equation?tex=Y) 内全员都参与这个映射活动,  
+> ┗ 所以 单射 + 满射 就可以给出两个集合间的一个一一对应的关系.
+
+[附录 B] 线性空间, 线性变换与内积
+--------------------
+
+**✦ 线性空间:**
+
+线性空间 ![](https://www.zhihu.com/equation?tex=V) 即对内部元素定义了 [[8]](#ref_8) 矢量加法 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cboxplus+%3AV%5Ctimes+V%5Cto+V%5C%5D) 与数乘 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cboxtimes+%3AP%5Ctimes+V%5Cto+V%5C%5D) 两个能满足八条确定运算规律的集合, 而集合中的元素我们称之为矢量.
+
+> 上述 ![](https://www.zhihu.com/equation?tex=%5C%5BV%5Ctimes+V%2CP%5Ctimes+V%5C%5D) 中的 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ctimes+%5C%5D) 表示直积, 定义 ![](https://www.zhihu.com/equation?tex=%5C%5BX%5Ctimes+Y%5Cequiv+%5Cleft%5C%7B+%5Cleft%28+x%2Cy+%5Cright%29%7Cx%5Cin+X%2Cy%5Cin+Y+%5Cright%5C%7D%5C%5D).  
+> 上述中的 ![](https://www.zhihu.com/equation?tex=P) 是数域, 参与数乘的数就属于数域, ![](https://www.zhihu.com/equation?tex=P) 可以是实数域 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cmathbb%7BR%7D%5C%5D) 或复数域 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cmathbb%7BC%7D%5C%5D) 等.  
+> 要注意到顺序是这样的:  
+> ┣ 我们是先给定了一个数域 ![](https://www.zhihu.com/equation?tex=P),  
+> ┣ 然后才给定一个集合 ![](https://www.zhihu.com/equation?tex=V),  
+> ┣ 集合 ![](https://www.zhihu.com/equation?tex=V) 内定义一个 ![](https://www.zhihu.com/equation?tex=%5C%5BV%5Ctimes+V%5Cto+V%5C%5D) 的二元运算, 称之为矢量加法,  
+> ┗ 然后定义一个 ![](https://www.zhihu.com/equation?tex=%5C%5BP%5Ctimes+V%5Cto+V%5C%5D) 的数乘运算将 ![](https://www.zhihu.com/equation?tex=V) 与 ![](https://www.zhihu.com/equation?tex=P) 耦合起来.  
+> 所以谈线性空间的时候要指出是什么域上的线性空间.
+
+矢量加法 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cboxplus+%5C%5D) 与数乘 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cboxtimes+%5C%5D) 需要满足的八条运算规律:
+
+> 下面对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+u%2Cv%2Cw%5Cin+V%2C%5C+%5Cforall+p%2C%7Bp%7D%27%5Cin+P%5C%5D) 均成立.  
+> ┣ (1). 矢量加法的交换律: ![](https://www.zhihu.com/equation?tex=%5C%5Bu%5Cboxplus+v%3Dv%5Cboxplus+u%5C%5D).  
+> ┣ (2). 矢量加法的结合律: ![](https://www.zhihu.com/equation?tex=%5C%5Bu%5Cboxplus+%5Cleft%28+v%5Cboxplus+w+%5Cright%29%3D%5Cleft%28+u%5Cboxplus+v+%5Cright%29%5Cboxplus+w%5C%5D).  
+> ┣ (3). 存在零元, 即矢量加法的单位元 ![](https://www.zhihu.com/equation?tex=%5C%5Bo%5Cin+V%5C%5D) 使得 ![](https://www.zhihu.com/equation?tex=%5C%5Bu%5Cboxplus+o%3Du%5C%5D).  
+> ┣ (4). 存在矢量加法的逆元 ![](https://www.zhihu.com/equation?tex=%5C%5B-u%5Cin+V%5C%5D) 使得 ![](https://www.zhihu.com/equation?tex=%5C%5B-u%5Cboxplus+v%3Do%5C%5D).  
+> ┣ (5). 存在数乘的单位元 ![](https://www.zhihu.com/equation?tex=%5C%5B1%5C%5D) 使得 ![](https://www.zhihu.com/equation?tex=%5C%5B1%5Cboxtimes+u%3Du%5C%5D).  
+> ┣ (6). 数乘与数域乘法相容: ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+p%7Bp%7D%27+%5Cright%29%5Cboxtimes+u%3Dp%5Cboxtimes+%5Cleft%28+%7Bp%7D%27%5Cboxtimes+u+%5Cright%29%5C%5D).  
+> ┣ (7). 数乘对数域加法的分配律: ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+p%2B%7Bp%7D%27+%5Cright%29%5Cboxtimes+u%3Dp%5Cboxtimes+u%5Cboxplus+%7Bp%7D%27%5Cboxtimes+u%5C%5D).  
+> ┗ (8). 数乘对矢量加法的分配律: ![](https://www.zhihu.com/equation?tex=%5C%5Bp%5Cboxtimes+%5Cleft%28+u%5Cboxplus+v+%5Cright%29%3Dp%5Cboxtimes+u%5Cboxplus+p%5Cboxtimes+v%5C%5D).  
+> 注意数乘是不要求交换律的, 然后就是数域自带了正常的乘法和加法, 就是小时候玩的那种.
+
+举一例加深理解 [[9]](#ref_9):
+
+> 在 ![](https://www.zhihu.com/equation?tex=%5C%5BV%3D%7B%7B%5Cmathbb%7BR%7D%7D%5E%7B%2B%7D%7D%3D%5Cleft%5C%7B+x%7Cx%3E0+%5Cright%5C%7D%2C%5C+P%3D%5Cmathbb%7BR%7D%5C%5D) 上定义运算 ![](https://www.zhihu.com/equation?tex=%5C%5Ba%5Cboxplus+b%3Dab%2C%5C+t%5Cboxtimes+c%3D%7B%7Bc%7D%5E%7Bt%7D%7D%5C%5D).  
+> ┗ 若将 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cboxplus+%5C%5D) 定义为矢量的加法, 而将 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cboxtimes+%5C%5D) 定义为数乘的话 ![](https://www.zhihu.com/equation?tex=V) 就构成 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cmathbb%7BR%7D%5C%5D) 上的线性空间.
+
+线性空间 ![](https://www.zhihu.com/equation?tex=V) 的维度定义为线性空间内能找出的线性无关的矢量的个数的最大值, 记为 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cdim+V%5C%5D).
+
+> 实际上, ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cdim+V%5C%5D) 是线性空间 ![](https://www.zhihu.com/equation?tex=V) 的唯一的特征量或者说不变量.  
+> ┗ 所以两个线性空间只要维度相同我们就可以说它们同构 [[10]](#ref_10) 了.
+
+最后, 由于矢量加法与数乘的运算与数域加法乘法相容, 就没必要特意创造新符号了.
+
+> 就是说我们将用 ![](https://www.zhihu.com/equation?tex=%5C%5Bu%2Bv%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5Bpu%5C%5D) 来代替 ![](https://www.zhihu.com/equation?tex=%5C%5Bu%5Cboxplus+v%5C%5D) 与 ![](https://www.zhihu.com/equation?tex=%5C%5Bp%5Cboxtimes+u%5C%5D) , 这并不会造成任何混乱.
+
+**✦ 线性变换:**
+
+线性变换就是 ![](https://www.zhihu.com/equation?tex=%5C%5BM%5C%5D) 线性空间 ![](https://www.zhihu.com/equation?tex=V) 到自身的线性映射 ![](https://www.zhihu.com/equation?tex=%5C%5BM%3AV%5Cto+V%5C%5D).
+
+> 关键在于是**线性**的映射, 就很好算, 线性就是说对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+u%2Cv%5Cin+V%2C%5Cforall+p%5Cin+P%5C%5D) 均满足:  
+> ┗ (1). ![](https://www.zhihu.com/equation?tex=%5C%5BM%5Cleft%28+u%2Bv+%5Cright%29%3DM%5Cleft%28+u+%5Cright%29%2BM%5Cleft%28+v+%5Cright%29%5C%5D) (2). ![](https://www.zhihu.com/equation?tex=%5C%5BM%5Cleft%28+pu+%5Cright%29%3DpM%5Cleft%28+u+%5Cright%29%5C%5D).
+
+所有线性变换都可以用方矩阵表示, 所有矢量都可以用列矩阵表示, 文中会证明这一点.
+
+**✦ 内积空间:**
+
+内积空间就是定义了内积运算的线性空间, 内积本质是一个映射 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+%5Ccdot+%5C+%2C%5C+%5Ccdot++%5Cright%29%3AV%5Ctimes+V%5Cto+P%5C%5D) .
+
+> 即对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+u%2Cv%5Cin+V%5C%5D) 有 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+u%2Cv+%5Cright%29%5Cin+P%5C%5D). 而这个映射是人为指定 [[11]](#ref_11) 的, 并没有什么玄妙的地方.
+
+然后就是上述映射要满足以下四个关系才能被称作内积运算:
+
+> (1). ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+u%2Cv+%5Cright%29%3D%7B%7B%5Cleft%28+v%2Cu+%5Cright%29%7D%5E%7B%2A%7D%7D%5C%5D)[[12]](#ref_12).  
+> (2). ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+u%2Cv%2Bw+%5Cright%29%3D%5Cleft%28+u%2Cv+%5Cright%29%2B%5Cleft%28+u%2Cw+%5Cright%29%5C%5D).  
+> (3). ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+u%2Cpv+%5Cright%29%3Dp%5Cleft%28+u%2Cv+%5Cright%29%5C%5D).  
+> (4). ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+u%2Cu+%5Cright%29%5Cge+0%5C%5D).
+
+[附录 C] 张量初步
+-----------
+
+**✦ 张量是基于矢量与对偶矢量定义的概念, 本质是一台没有感情的多重线性映射机器.**
+
+> 显然我们要先定义一个数域 ![](https://www.zhihu.com/equation?tex=P) 上的矢量空间 ![](https://www.zhihu.com/equation?tex=%5C%5BV%5C%5D), 然后定义一个内积运算.  
+> 然后由内积运算诱导出一个对偶矢量空间 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D), 诱导方法如下:  
+> ┣ 内积运算 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+%5Ccdot+%5C+%2C%5C+%5Ccdot++%5Cright%29%5C%5D) 的作用是对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%5Cin+V%5C%5D) 有 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D+%5Cright%29%3Dp%5Cin+P%5C%5D).  
+> ┣ 显然我们可以很自然地建立一个映射 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ctext%7Bdu%3A%7DV%5Cto+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D).  
+> ┣ 具体写出来就是 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Ctext%7Bdu%7D%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%3D%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D), ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5C%5D)就是我设计的一个符号罢了.  
+> ┣ 那么 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5C%5D) 满足什么性质呢? 我定义它满足对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%5Cin+V%5C%5D) 有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%3D%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D+%5Cright%29%5C%5D).  
+> ┣ 说玄乎点 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5C%5D) 就是一个线性泛函, 意思是它作用到矢量上会给出一个数.  
+> ┣ 显然这样一来我们就构建了一个与 ![](https://www.zhihu.com/equation?tex=V) 同构的对偶空间 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D).  
+> ┗ 对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%5Cin+V%5C%5D), 一定 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cexists+%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D)与之对应, ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D)里的元素我们称之为对偶矢量.
+
+**✦ 张量是如此的冷酷, 你只要把足够矢量和对偶矢量投入这台机器, 它就会给出一个数.**
+
+其实张量有无数多种, 但可以按照需要投入的矢量与对偶矢量的数目进行分类.
+
+比如说 (1,1) 型张量就是投入 ![](https://www.zhihu.com/equation?tex=1) 个对偶矢量与 ![](https://www.zhihu.com/equation?tex=1) 个矢量就得出一个数.
+
+> 我们可以将 (1,1) 型张量记为 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5C%5D), 它对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%5Cin+V%2C%7B%7Bv%7D_%7B%5Cbeta+%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D)有 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Cbeta+%7D%7D+%5Cright%29%7D%3Dp%5Cin+P%5C%5D).
+
+比如说 (0,1) 型张量就是投入 ![](https://www.zhihu.com/equation?tex=1) 个矢量就得出一个数.
+
+> 我们可以将 (0,1) 型张量记为 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%7D%5C%5D), 它对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%5Cin+V%5C%5D) 有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7BT%7D_%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%7D%3Dp%5Cin+P%5C%5D).  
+> ┣ 其实不用这样记, 因为我们的老朋友对偶矢量就是 (0,1) 型张量.  
+> ┗ 我是说 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D) 的定义不就是对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%5Cin+V%5C%5D) 有 ![](https://www.zhihu.com/equation?tex=%5C%5B%7B%7Bv%7D_%7B%5Calpha+%7D%7D%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D%3D%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%2C%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D+%5Cright%29%3Dp%5Cin+P%5C%5D) 吗?
+
+比如说 (2,1) 型张量就是投入 ![](https://www.zhihu.com/equation?tex=2) 个对偶矢量与 ![](https://www.zhihu.com/equation?tex=1) 个矢量就得出一个数.
+
+> 可以将 (2,1) 型张量记为 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot+%2C%5Ccdot++%5Cright%29%7D%5C%5D), 它对 ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cforall+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D%5Cin+V%2C%7B%7Bv%7D_%7B%5Cbeta+%7D%7D%2C%7B%7Bv%7D_%7B%5Cgamma+%7D%7D%5Cin+%7B%7BV%7D%5E%7B%2A%7D%7D%5C%5D)有 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5E%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Cbeta+%7D%7D%2C%7B%7Bv%7D_%7B%5Cgamma+%7D%7D+%5Cright%29%7D%3Dp%5Cin+P%5C%5D).
+
+聪明的你, 一定不需要我再继续比如了吧, 比如说当然可以有 (114, 514) 型张量啊.
+
+唯一需要提一下的就是, 这些输入槽都是线性的, 如 (1,1) 型就是 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%7B%7Bp%7D_%7Bj%7D%7D%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D+%5Cright%29%7D%5E%7B%5Cleft%28+%7B%7Bp%7D_%7Bi%7D%7D%7B%7Bv%7D_%7B%5Calpha+%7D%7D+%5Cright%29%7D%3D%7B%7Bp%7D_%7Bi%7D%7D%7B%7Bp%7D_%7Bj%7D%7DT_%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Cbeta+%7D%7D+%5Cright%29%7D%5E%7B%5Cleft%28+%7B%7Bv%7D%5E%7B%5Calpha+%7D%7D+%5Cright%29%7D%5C%5D).
+
+**✦ 是不是太抽象力? 我可以举一个极其具体的例子, 让你直观感受一下:**
+
+如果说矢量可以用列矩阵表示, 而对偶矢量可以用行矩阵表示的话, 那方阵是什么?
+
+> 方阵左乘对偶矢量, 右乘矢量, 得到一个数, 所以方阵其实就相当于 (1,1) 型张量.
+
+对偶矢量左乘矢量, 也得到一个数, 用这个观点来看是什么意思?
+
+> 你可以说对偶矢量是 (0,1) 型张量, 你也可以说矢量是一个 (1,0) 型张量, 观点是相对的.  
+> ┗ 然而可惜贫瘠的线性代数似乎根本表示不出这三类之外的张量了, 只能是你自己类比了.
+
+最后需要说明的一点是, ![](https://www.zhihu.com/equation?tex=%5C%5B%5Cleft%28+m%2Cn+%5Cright%29%5C%5D) 型张量如果没放满会怎样? 会退化.
+
+> 往一个 (2,2) 型张量俩投入俩对偶矢量, 再投入俩矢量会得到一个数, 这是前面的定义.  
+> ┣ 若往 (2,2) 型张量里只投入一个对偶矢量呢? 它会变成 (1,2) 型张量.  
+> ┗ 即 ![](https://www.zhihu.com/equation?tex=%5C%5BT_%7B%5Cleft%28+%5Ccdot+%2C%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%5Ccdot+%2C%5Ccdot++%5Cright%29%7D%5Cto+T_%7B%5Cleft%28+%5Ccdot+%2C%5Ccdot++%5Cright%29%7D%5E%7B%5Cleft%28+%7B%7Bv%7D_%7B%5Calpha+%7D%7D%2C%5Ccdot++%5Cright%29%7D%5C%5D) 还需要投入 ![](https://www.zhihu.com/equation?tex=1) 个对偶矢量与 ![](https://www.zhihu.com/equation?tex=2) 个矢量就得出一个数.
+
+我知道你一定还是对张量具体是什么充满了疑惑, 别想了, 超纲了.
+
+参考
+--
+
+1.  [^](#ref_1_0) 你放心, 该记号不仅与国际接轨, 还能完美兼容市面上大多数记号.
+2.  [^](#ref_2_0) 简洁明了是有它的代价的.
+3.  [^](#ref_3_0) 该记号是靠搞广相拿诺奖的彭罗斯发明的.
+4.  [^](#ref_4_0) 这里做例子的是复线性空间, 那么接下来全文讨论的就都是复线性空间了, 所有的数也都是复数域的数.
+5.  [^](#ref_5_0) 可能有人知道泛函是函数到数域的映射, 却想不通这里为何也叫泛函. 是这样的, 一句话概括就是: 矢量是基矢的函数, 所以矢量就是函数.
+6.  [^](#ref_6_0) 为何系数和基矢的标号都写上边儿呢? 呵呵, 此中有真意啊.
+7.  [^](#ref_7_0) 真让你手算这样的矩阵运算是不是想死? 哈哈, 知道为啥要费劲搞这些了吧.
+8.  [^](#ref_8_0) 我之所以不用普通的加号和乘号就是为了让大家意识到, 这里说的加法和乘法与数域中的相应概念不完全是一回事. 只要是能满足下面的八条运算规则的就都有资格充当这俩运算. 当然日常生活中不会这么写, 这是因为下面八条运算规律让数域上的加法与乘法和矢量加法与数乘相容了.
+9.  [^](#ref_9_0) 如果你能证明下面说法, 你应该就算很懂线性空间是怎么一回事了.
+10.  [^](#ref_10_0) 同构, 就是存在一个结构上的一一对应. 两个事物同构就是说两个事物在作为特定的数学对象 (比如说线性空间) 来考虑时是完全一样完全等价的.
+11.  [^](#ref_11_0) 只需要指定基矢之间的映射效果就好了.
+12.  [^](#ref_12_0) 右上角星号表示取共轭.
